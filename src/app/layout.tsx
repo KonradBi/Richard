@@ -1,6 +1,5 @@
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { Navigation } from "@/components/layout/navigation"
 import dynamic from "next/dynamic"
 import { Inter } from "next/font/google"
 import "./globals.css"
