@@ -12,7 +12,7 @@ export function Header() {
   const navigation = [
     { name: 'Projekte', href: '/projekte' },
     { name: 'Haus 0', href: '/haus-0' },
-    { name: 'Kontakt', href: '/#kontakt' },
+    { name: 'Kontakt', href: '/kontakt' },
   ]
 
   useEffect(() => {

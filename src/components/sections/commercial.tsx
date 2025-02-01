@@ -11,28 +11,14 @@ const projects = [
     image: "/images/gewerbe/arcmuetzegewerbe1.jpg",
     title: "Innovation im Gewerbebau",
     description: "Moderne Gewerbeimmobilien, die Funktionalität und Ästhetik vereinen. Durchdachte Raumkonzepte für maximale Effizienz.",
-    gradientFrom: "from-blue-50",
-    gradientTo: "to-slate-100"
   },
   {
     id: 2,
     image: "/images/gewerbe/arcmuetzegewerbe2.jpg",
     title: "Nachhaltige Geschäftsräume",
     description: "Zukunftsorientierte Gewerbearchitektur mit Fokus auf Nachhaltigkeit und moderne Arbeitswelten.",
-    gradientFrom: "from-slate-50",
-    gradientTo: "to-zinc-100"
   }
 ]
-
-// Diagonales Linienmuster für den Gewerbebereich
-const DiagonalPattern = () => (
-  <svg className="absolute inset-0 w-full h-full opacity-[0.02]" viewBox="0 0 100 100">
-    <pattern id="diagonal" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="10" x2="10" y2="0" stroke="currentColor" strokeWidth="0.5" />
-    </pattern>
-    <rect x="0" y="0" width="100" height="100" fill="url(#diagonal)" />
-  </svg>
-)
 
 export function Commercial() {
   const containerRef = useRef(null)
@@ -44,66 +30,36 @@ export function Commercial() {
   })
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"])
 
   return (
-    <section ref={containerRef} className="relative py-32 min-h-screen overflow-hidden bg-neutral-50">
-      {/* Minimalistischer Hintergrund */}
-      <motion.div 
-        style={{ y: backgroundY }}
-        className="absolute inset-0"
-      >
-        <DiagonalPattern />
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 via-transparent to-neutral-50" />
-      </motion.div>
+    <section ref={containerRef} className="relative py-32 min-h-screen overflow-hidden">
+      {/* Dynamischer Hintergrund */}
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 to-neutral-800">
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #22c55e 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
+        }} />
+      </div>
 
-      {/* Content Container */}
-      <motion.div 
-        style={{ y: contentY }}
-        className="relative container mx-auto px-4"
-      >
-        {/* Section Title */}
-        <div className="text-center mb-32">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-primary-500 text-sm uppercase tracking-widest mb-4 block"
-          >
-            Geschäftsräume
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-light text-neutral-800 relative"
-          >
-            <span className="relative">
-              Gewerbe
-              <motion.span
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-                className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-neutral-300 to-transparent origin-left"
-              />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Überschrift */}
+        <div className="text-center mb-24">
+          <div className="inline-block">
+            <span className="block text-sm font-medium tracking-widest text-primary-500 mb-4">
+              Geschäftsräume
             </span>
-          </motion.h2>
+            <h2 className="text-4xl font-light tracking-tight text-white sm:text-5xl">
+              Gewerbe
+            </h2>
+            <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-50" />
+          </div>
+          <p className="mt-8 max-w-2xl mx-auto text-lg text-gray-300">
+            Gewerbearchitektur, die Maßstäbe setzt. Von der ersten Skizze bis zur finalen Umsetzung 
+            entwickeln wir gemeinsam Räume, die Ihr Unternehmen optimal repräsentieren.
+          </p>
         </div>
 
-        {/* Intro Text */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-lg text-neutral-600 text-center max-w-3xl mx-auto mb-24 leading-relaxed"
-        >
-          Gewerbearchitektur, die Maßstäbe setzt. Von der ersten Skizze bis zur finalen Umsetzung 
-          entwickeln wir gemeinsam Räume, die Ihr Unternehmen optimal repräsentieren.
-        </motion.p>
-
-        {/* Projects Grid */}
+        {/* Projects */}
         <div className="grid md:grid-cols-2 gap-12 md:gap-24">
           {projects.map((project, index) => (
             <motion.div
@@ -112,18 +68,17 @@ export function Commercial() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 1, delay: index * 0.2 }}
-              className="relative"
             >
               {/* Project Container */}
               <div 
-                className="relative group"
+                className="group relative"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 {/* Image Container */}
-                <div className="relative aspect-[4/3] mb-8">
-                  {/* Subtle Border Frame */}
-                  <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-neutral-100 to-white shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative aspect-[16/9] mb-8">
+                  {/* Glasmorphism Frame */}
+                  <div className="absolute -inset-4 rounded-3xl bg-white/5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" />
                   
                   {/* Main Image */}
                   <motion.div
@@ -136,47 +91,58 @@ export function Commercial() {
                     <Image
                       src={project.image}
                       alt={project.title}
-                      width={1600}
-                      height={1200}
-                      className="object-cover w-full h-full brightness-[0.98] group-hover:brightness-100 transition-all duration-700"
+                      width={1920}
+                      height={1080}
+                      className="object-cover w-full h-full brightness-90 group-hover:brightness-100 transition-all duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={index === 0}
                     />
                     
-                    {/* Subtle Gradient Overlay */}
+                    {/* Gradient Overlay */}
                     <motion.div 
-                      className={`absolute inset-0 bg-gradient-to-br ${project.gradientFrom} ${project.gradientTo} mix-blend-soft-light`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: hoveredIndex === index ? 0.1 : 0 }}
+                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                      initial={{ opacity: 0.6 }}
+                      animate={{ opacity: hoveredIndex === index ? 0.4 : 0.6 }}
                       transition={{ duration: 0.7 }}
                     />
-                  </motion.div>
-                </div>
 
-                {/* Text Content */}
-                <div className="relative text-center">
-                  <motion.h3
-                    className="text-2xl md:text-3xl font-light mb-4 text-neutral-800"
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <motion.p
-                    className="text-neutral-600 leading-relaxed"
-                  >
-                    {project.description}
-                  </motion.p>
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: hoveredIndex === index ? 0 : 20, opacity: hoveredIndex === index ? 1 : 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <h3 className="text-3xl font-extralight text-white mb-4 tracking-wide">{project.title}</h3>
+                        <p className="text-gray-200/90 leading-relaxed">{project.description}</p>
+                      </motion.div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex justify-center mt-16">
-            <Link href="/projekte" className="text-lg font-medium text-primary-600 hover:text-primary-700">
-              Zu den Projekten <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-      </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-20"
+        >
+          <Link
+            href="/projekte"
+            className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium text-white bg-primary-500/10 hover:bg-primary-500/20 transition-colors duration-300"
+          >
+            Mehr Gewerbeprojekte entdecken
+            <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
+        </motion.div>
+      </div>
     </section>
   )
 }

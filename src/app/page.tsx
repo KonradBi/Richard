@@ -7,7 +7,6 @@ import { Quote } from "@/components/sections/quote"
 import { Living } from "@/components/sections/living"
 import { Commercial } from "@/components/sections/commercial"
 import { Testimonials } from "@/components/sections/testimonials"
-import { Contact } from "@/components/sections/contact"
 import { LogoWall } from "@/components/sections/logo-wall"
 import { Team } from "@/components/sections/team"
 
@@ -23,7 +22,6 @@ export default function Home() {
       <Commercial />
       <Team />
       <Testimonials />
-      <Contact />
       <LogoWall />
     </main>
   )
