@@ -1,7 +1,8 @@
 "use client"
 
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Image from 'next/image'
+import { useEffect } from 'react'
 
 const concepts = [
   {
@@ -87,6 +88,12 @@ const concepts = [
 ]
 
 export default function KonzeptePage() {
+  useEffect(() => {
+    // Client-Side Window-Zugriffe
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section mit 3D Perspektive */}
@@ -114,14 +121,18 @@ export default function KonzeptePage() {
               <motion.div
                 key={i}
                 className="absolute w-2 h-2 bg-emerald-500/30 rounded-full"
+                initial={{
+                  x: Math.random() * 1000,
+                  y: Math.random() * 1000,
+                }}
                 animate={{
                   x: [
-                    Math.random() * window.innerWidth,
-                    Math.random() * window.innerWidth,
+                    Math.random() * 1000,
+                    Math.random() * 1000,
                   ],
                   y: [
-                    Math.random() * window.innerHeight,
-                    Math.random() * window.innerHeight,
+                    Math.random() * 1000,
+                    Math.random() * 1000,
                   ],
                   scale: [0.5, 1.5, 0.5],
                   opacity: [0.2, 0.5, 0.2],
@@ -129,7 +140,6 @@ export default function KonzeptePage() {
                 transition={{
                   duration: Math.random() * 10 + 10,
                   repeat: Infinity,
-                  ease: "linear",
                 }}
                 style={{
                   left: Math.random() * 100 + '%',
