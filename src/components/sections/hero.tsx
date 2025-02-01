@@ -130,10 +130,11 @@ export function Hero() {
                 style={{ scale }}
               >
                 <Image
-                  src="/images/home/Fe3XlA4Y.jpg"
+                  src="/images/home/hero.jpg"
                   alt="Architekt Mütze"
-                  fill
-                  className="object-cover object-center"
+                  width={1200}
+                  height={1600}
+                  className="object-cover object-center w-full h-full"
                   priority
                   quality={100}
                 />

@@ -8,7 +8,7 @@ import Link from "next/link"
 const projects = [
   {
     id: 1,
-    image: "/images/commercial/modern/arcmuetzegewerbe1.jpg",
+    image: "/images/gewerbe/arcmuetzegewerbe1.jpg",
     title: "Innovation im Gewerbebau",
     description: "Moderne Gewerbeimmobilien, die Funktionalität und Ästhetik vereinen. Durchdachte Raumkonzepte für maximale Effizienz.",
     gradientFrom: "from-blue-50",
@@ -16,7 +16,7 @@ const projects = [
   },
   {
     id: 2,
-    image: "/images/commercial/modern/arcmuetzegewerbe2.jpg",
+    image: "/images/gewerbe/arcmuetzegewerbe2.jpg",
     title: "Nachhaltige Geschäftsräume",
     description: "Zukunftsorientierte Gewerbearchitektur mit Fokus auf Nachhaltigkeit und moderne Arbeitswelten.",
     gradientFrom: "from-slate-50",
@@ -136,9 +136,10 @@ export function Commercial() {
                     <Image
                       src={project.image}
                       alt={project.title}
-                      fill
+                      width={1600}
+                      height={1200}
+                      className="object-cover w-full h-full brightness-[0.98] group-hover:brightness-100 transition-all duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover brightness-[0.98] group-hover:brightness-100 transition-all duration-700"
                     />
                     
                     {/* Subtle Gradient Overlay */}

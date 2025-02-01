@@ -8,7 +8,7 @@ import Link from "next/link"
 const projects = [
   {
     id: 1,
-    image: "/images/living/modern/arcmuetzewohnen1.png",
+    image: "/images/wohnen/arcmuetzewohnen3.png",
     title: "Architektur, die verbindet",
     description: "Mit innovativen Konzepten schaffe ich nachhaltige Lebensräume, die sich nahtlos in die moderne Welt einfügen.",
     gradientFrom: "from-stone-100",
@@ -17,7 +17,7 @@ const projects = [
   },
   {
     id: 2,
-    image: "/images/living/modern/arcmuetzewohnen2.png",
+    image: "/images/wohnen/arcmuetzewohnen2.jpg",
     title: "Harmonie der Elemente",
     description: "Licht, Raum und Material verschmelzen zu einer Einheit, die mehr ist als die Summe ihrer Teile.",
     gradientFrom: "from-amber-50",
@@ -26,7 +26,7 @@ const projects = [
   },
   {
     id: 3,
-    image: "/images/living/modern/arcmuetzewohnen3.jpg",
+    image: "/images/wohnen/arcmuetzewohnen1.png",
     title: "Effizienz trifft Ästhetik",
     description: "Erlebe, wie durchdachte Grundrisse Dein Wohnerlebnis verändern und Dein Zuhause in einen Ort der Entfaltung verwandeln.",
     gradientFrom: "from-zinc-100",
@@ -145,10 +145,11 @@ export function Living() {
                     <Image
                       src={project.image}
                       alt={project.title}
-                      fill
+                      width={1920}
+                      height={1080}
+                      className="object-cover w-full h-full brightness-[0.98] group-hover:brightness-100 transition-all duration-700"
                       sizes="(max-width: 768px) 100vw, 66vw"
                       priority={index === 0}
-                      className="object-cover brightness-[0.98] group-hover:brightness-100 transition-all duration-700"
                     />
                     
                     {/* Subtle Gradient Overlay */}

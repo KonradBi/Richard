@@ -7,25 +7,28 @@ import { ArrowUpRight } from "lucide-react"
 
 const projects = [
   {
+    id: 1,
+    image: "/images/neubau/Neubau1.jpeg",
+    subtitle: "Mehrfamilienhaus",
     title: "Neubau",
-    subtitle: "Villa am See",
-    description: "Modernes Wohnhaus mit Fokus auf Nachhaltigkeit",
-    image: "/images/projects/neubau/Neubau1.jpeg",
-    gradient: "from-emerald-500 to-primary-500",
+    description: "Moderne Architektur, die Ihre Vision in die Realität umsetzt. Nachhaltig, effizient und ästhetisch ansprechend.",
+    href: "/projekte/neubau"
   },
   {
-    title: "Neubau",
-    subtitle: "Stadthaus",
-    description: "Urbanes Leben im Einklang mit der Natur",
-    image: "/images/projects/neubau/Neubau2.png",
-    gradient: "from-primary-500 to-emerald-500",
+    id: 2,
+    image: "/images/neubau/Neubau2.png",
+    subtitle: "Neubau Villa",
+    title: "Umbau",
+    description: "Durchdachte Raumkonzepte und innovative Materialien für Ihr individuelles Traumhaus.",
+    href: "/projekte/umbau"
   },
   {
+    id: 3,
+    image: "/images/neubau/Umbau.png",
+    subtitle: "Sanierung Villa",
     title: "Sanierung",
-    subtitle: "Historisches Ensemble",
-    description: "Behutsame Modernisierung mit Charakter",
-    image: "/images/projects/sanierung/Umbau.png",
-    gradient: "from-green-500 to-primary-500",
+    description: "Behutsame Modernisierung mit Respekt für die bestehende Bausubstanz. Wir schaffen neuen Wohnraum im Bestand.",
+    href: "/projekte/sanierung"
   }
 ]
 
@@ -101,7 +104,7 @@ export function Expertise() {
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
                   <div className="transform transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
-                    <div className={`inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white bg-gradient-to-r ${project.gradient} mb-4 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                    <div className="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white bg-white mb-4 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {project.title}
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-3 drop-shadow-lg">{project.subtitle}</h3>

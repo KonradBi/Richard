@@ -200,12 +200,6 @@ const projectsData = {
   },
 }
 
-export async function generateStaticParams() {
-  return Object.keys(projectsData).map((id) => ({
-    id: id,
-  }))
-}
-
 export default function ProjectDetail() {
   const { id } = useParams()
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
