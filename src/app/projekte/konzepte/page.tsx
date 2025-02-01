@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const concepts = [
   {
@@ -88,10 +88,10 @@ const concepts = [
 ]
 
 export default function KonzeptePage() {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    // Client-Side Window-Zugriffe
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    setMounted(true);
   }, []);
 
   return (
@@ -116,38 +116,40 @@ export default function KonzeptePage() {
           ></div>
 
           {/* Floating particles */}
-          <div className="absolute inset-0 overflow-hidden">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-emerald-500/30 rounded-full"
-                initial={{
-                  x: Math.random() * 1000,
-                  y: Math.random() * 1000,
-                }}
-                animate={{
-                  x: [
-                    Math.random() * 1000,
-                    Math.random() * 1000,
-                  ],
-                  y: [
-                    Math.random() * 1000,
-                    Math.random() * 1000,
-                  ],
-                  scale: [0.5, 1.5, 0.5],
-                  opacity: [0.2, 0.5, 0.2],
-                }}
-                transition={{
-                  duration: Math.random() * 10 + 10,
-                  repeat: Infinity,
-                }}
-                style={{
-                  left: Math.random() * 100 + '%',
-                  top: Math.random() * 100 + '%',
-                }}
-              />
-            ))}
-          </div>
+          {mounted && (
+            <div className="absolute inset-0 overflow-hidden">
+              {Array.from({ length: 20 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-emerald-500/30 rounded-full"
+                  initial={{
+                    x: Math.random() * 1000,
+                    y: Math.random() * 1000,
+                  }}
+                  animate={{
+                    x: [
+                      Math.random() * 1000,
+                      Math.random() * 1000,
+                    ],
+                    y: [
+                      Math.random() * 1000,
+                      Math.random() * 1000,
+                    ],
+                    scale: [0.5, 1.5, 0.5],
+                    opacity: [0.2, 0.5, 0.2],
+                  }}
+                  transition={{
+                    duration: Math.random() * 10 + 10,
+                    repeat: Infinity,
+                  }}
+                  style={{
+                    left: Math.random() * 100 + '%',
+                    top: Math.random() * 100 + '%',
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Hero Content mit 3D Transform */}
