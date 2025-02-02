@@ -10,6 +10,7 @@ Eine moderne, responsive Website für Arc Mütze, entwickelt mit Next.js 13, Typ
 - SEO-freundliche Struktur
 - Interaktive Komponenten
 - Dynamische Projektgalerie
+- Kontaktformular mit E-Mail-Integration
 
 ## 📁 Projektstruktur
 
@@ -23,6 +24,8 @@ arcmuetze/
 │   │   │   ├── page.tsx      # Projektübersicht
 │   │   │   └── [id]/         # Dynamische Projektseiten
 │   │   │       └── page.tsx
+│   │   ├── kontakt/         # Neue Kontaktseite
+│   │   │   └── page.tsx
 │   │   ├── datenschutz/      # Datenschutz Seite
 │   │   │   └── page.tsx
 │   │   └── impressum/        # Impressum Seite
@@ -57,16 +60,23 @@ arcmuetze/
 ### Homepage
 - **Hero Section**: Fullscreen Landing mit animiertem Text
 - **Services**: Übersicht der Dienstleistungen
-- **Expertise**: Darstellung der Kernkompetenzen
+- **Expertise**: Darstellung der Kernkompetenzen mit optimierten Bildern
 - **Quote**: Animierte Zitat-Sektion
 - **Team/Netzwerk**: Interaktive Visualisierung des Partnernetzwerks
   - Dynamische Verbindungslinien
   - Pulsierende Animationen
   - Hover-Effekte
 - **Living/Commercial**: Showcase der Wohn- und Gewerbeprojekte
+  - Verbesserte Bilddarstellung
+  - Optimierte Links zu Projekten
 
 ### Projekte
-- **Projektübersicht**: Grid-Layout mit:
+- **Projektübersicht**: Spektakuläre Hero-Sektion mit:
+  - Animierten Hintergrund-Blobs
+  - Responsiven Größenanpassungen
+  - Geometrischen Mustern
+  - Smooth Scroll Indicator
+- **Projektgrid**: Modernes Grid-Layout mit:
   - Hover-Effekten
   - Bildoverlay
   - Animiertem Erscheinen
@@ -76,16 +86,33 @@ arcmuetze/
   - Technische Details
   - Bildergalerie
 
+### Kontakt
+- **Dedizierte Kontaktseite** unter `/kontakt` mit:
+  - Responsivem Design
+  - Kontaktformular mit E-Mail-Integration
+  - Büro- und Kontaktinformationen
+  - Animierten Übergängen
+  - Glasmorphism-Effekten
+
 ### Navigation
 - Responsive Header mit Mobile-Menu
+- Aktualisierte Navigation zur Kontaktseite
 - Smooth Scroll zu Sektionen
 - Aktive Link-Hervorhebung
+
+### Mobile Optimierung
+- Angepasste Größen für alle Viewports
+- Optimierte Touch-Targets
+- Reduzierte Animationen für bessere Performance
+- Responsive Typografie
+- Verbesserte Abstände und Layouts
 
 ### Animationen
 - Framer Motion Integrationen
 - Scroll-basierte Animationen
 - Hover-Effekte
 - Übergangsanimationen
+- Optimierte Performance
 
 ## 📸 Projekte
 
@@ -99,38 +126,44 @@ Aktuelle Projektliste:
 
 ## 🚀 Getting Started
 
-1. Repository klonen:
-```bash
-git clone [repository-url]
-```
-
-2. Abhängigkeiten installieren:
-```bash
-npm install
-```
-
+1. Repository klonen
+2. Dependencies installieren:
+   ```bash
+   npm install
+   ```
 3. Entwicklungsserver starten:
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
+4. Browser öffnen unter [http://localhost:3000](http://localhost:3000)
 
-4. Browser öffnen und http://localhost:3000 aufrufen
+## 📝 Umgesetzte Verbesserungen
 
-## 🔧 Technologie-Stack
+### Design
+- Optimierte Farbpalette
+- Verbesserte Typografie
+- Modernere UI-Elemente
+- Konsistente Abstände
 
-- **Framework**: Next.js 13
-- **Sprache**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animationen**: Framer Motion
-- **Deployment**: [Platform]
+### Performance
+- Optimierte Bildgrößen
+- Reduzierte Bundle-Größe
+- Verbesserte Ladezeiten
+- Mobile-First Ansatz
 
-## 📝 Nächste Schritte
+### Benutzerfreundlichkeit
+- Intuitivere Navigation
+- Bessere Erreichbarkeit
+- Optimierte Formulare
+- Responsive Breakpoints
 
-- [ ] Integration der Projektbilder
-- [ ] Vervollständigung der Projektdetails
-- [ ] SEO-Optimierung
-- [ ] Performance-Tests
-- [ ] Deployment Setup
+## 🛠 Technologien
+
+- Next.js 13
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Resend API für E-Mails
 
 ## 🤝 Contributing
 
@@ -139,62 +172,3 @@ Bitte lesen Sie CONTRIBUTING.md für Details zu unserem Code of Conduct und dem 
 ## 📄 Lizenz
 
 Dieses Projekt ist lizenziert unter [Lizenz] - siehe LICENSE.md für Details.
-
-## Session Update (01.02.2025)
-
-### Sanierungsprojekte Seite
-
-#### Layout und Design
-- Alle Sanierungsprojekte wurden auf einer einzelnen Seite konsolidiert
-- Hero-Sektion:
-  - Neues Hero-Bild (Puschkinallee1.jpg)
-  - Weißer Bereich (h-24) am oberen Rand für bessere Navigation-Sichtbarkeit
-  - Animierter Titel "Neues Leben für historische Schätze" mit Wort-für-Wort Animation
-  - Entfernung des beschreibenden Textes unter dem Titel
-  - Dunklerer Gradient (from-black/80) für bessere Lesbarkeit
-
-#### Bildergalerien
-Jedes Projekt wurde mit einer eigenen Bildergalerie ausgestattet:
-
-1. **Puschkinallee**
-   - Hauptbild: Puschkinallee1.jpg
-   - Zusatzbild: Puschkinallee2.jpg
-   - Format: 16:9 (Mobile) / 21:9 (Desktop)
-
-2. **Konkordienplatz**
-   - Hauptbild: Konkordienplatz2.jpeg (mit Hover-Effekt)
-   - Zusatzbild: Konkordienplatz1.jpeg
-   - Format: 16:9 (Mobile) / 21:9 (Desktop)
-
-3. **Nymphenburgerstraße**
-   - Hauptbild: Nymphenburgerstraße1.jpg
-   - Vier Zusatzbilder im Grid-Layout:
-     - Nymphenburgerstraße2.jpg
-     - Nymphenburgerstraße3.jpg
-     - Nymphenburgerstraße4.jpg
-     - Nymphenburgerstraße5.jpg
-   - Format: 4:3 für Grid-Bilder
-
-4. **Ulrichstraße**
-   - Hauptbild: Ulrichstraße2.jpg (mit Hover-Effekt)
-   - Zusatzbild: Ulrichstraße1.jpg
-   - Format: 16:9 (Mobile) / 21:9 (Desktop)
-
-#### Bildoptimierungen
-- Alle Bilder verwenden `object-cover` für gleichmäßige Abdeckung
-- Abgerundete Ecken (rounded-3xl) für alle Bilder
-- Hover-Effekte auf Hauptbildern (scale-105 mit 700ms Transition)
-- Responsive `sizes` Attribute für optimale Ladeleistung
-  - Hauptbilder: `(max-width: 768px) 100vw, 50vw`
-  - Grid-Bilder: `(max-width: 768px) 50vw, 25vw`
-  - Große Einzelbilder: `100vw`
-
-### Landing Page
-- Farbänderung in der Hero-Sektion:
-  - Das Wort "Architektur" wurde von der silbernen Gradient-Farbe zurück zu `text-emerald-600` (grün) geändert
-
-### Nächste Schritte
-- [ ] Performance-Tests für Bildladeverhalten
-- [ ] Überprüfung der Responsive-Darstellung auf verschiedenen Geräten
-- [ ] Mögliche Ergänzung weiterer Projektdetails
-- [ ] SEO-Optimierung der Bildattribute

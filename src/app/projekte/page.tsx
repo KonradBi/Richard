@@ -85,24 +85,24 @@ export default function ProjektePage() {
       <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Organische Hintergrundformen */}
         <div className="absolute inset-0">
-          {/* Große animierte Blobs */}
+          {/* Große animierte Blobs - angepasste Größen für Mobile */}
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.7 }}
             transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-green-100 rounded-full mix-blend-multiply filter blur-3xl"
+            className="absolute top-1/4 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-green-100 rounded-full mix-blend-multiply filter blur-3xl"
           />
           <motion.div 
             initial={{ scale: 1.2, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.7 }}
             transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
-            className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-green-200 rounded-full mix-blend-multiply filter blur-3xl"
+            className="absolute top-1/3 right-1/4 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-green-200 rounded-full mix-blend-multiply filter blur-3xl"
           />
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1.1, opacity: 0.7 }}
             transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", delay: 1 }}
-            className="absolute bottom-1/4 left-1/2 w-[550px] h-[550px] bg-green-300 rounded-full mix-blend-multiply filter blur-3xl"
+            className="absolute bottom-1/4 left-1/2 w-[275px] md:w-[550px] h-[275px] md:h-[550px] bg-green-300 rounded-full mix-blend-multiply filter blur-3xl"
           />
           
           {/* Zusätzliche dekorative Elemente */}
@@ -120,7 +120,7 @@ export default function ProjektePage() {
             <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                backgroundSize: '60px 60px'
+                backgroundSize: '30px 30px'
               }}
             ></div>
           </div>
@@ -132,14 +132,14 @@ export default function ProjektePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-7xl md:text-8xl font-bold mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 md:mb-8 leading-tight">
                 <span className="block bg-gradient-to-br from-green-900 via-green-600 to-green-400 bg-clip-text text-transparent">
                   Unsere Projekte
                 </span>
@@ -151,7 +151,7 @@ export default function ProjektePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <p className="text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light px-4">
                 Nachhaltige Architektur im Einklang mit Mensch und Natur.
                 <motion.span 
                   initial={{ opacity: 0 }}
@@ -169,24 +169,24 @@ export default function ProjektePage() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1.5, delay: 1.2 }}
-              className="w-32 h-1 bg-gradient-to-r from-green-600 to-green-400 mx-auto rounded-full"
+              className="w-24 md:w-32 h-1 bg-gradient-to-r from-green-600 to-green-400 mx-auto rounded-full"
             />
           </motion.div>
         </div>
 
         {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4"
+          className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
         >
-          <span className="text-sm text-gray-500 uppercase tracking-widest">Scrollen</span>
+          <span className="text-xs md:text-sm text-gray-500 uppercase tracking-widest">Scrollen</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           >
-            <svg className="w-6 h-6 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </motion.div>
@@ -194,19 +194,19 @@ export default function ProjektePage() {
       </div>
 
       {/* Projekt Grid mit verbesserten Animationen */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
         {/* Einleitender Text */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-lg text-gray-600">
+        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+          <p className="text-base md:text-lg text-gray-600 px-4">
             Hier finden Sie eine kuratierte Auswahl unserer Projekte. Jedes Projekt steht für unsere Vision 
             einer nachhaltigen und lebenswerten Architektur. Entdecken Sie die Geschichten hinter unseren Arbeiten.
           </p>
         </div>
 
         {/* Neubauprojekte */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-light mb-8">Neubauprojekte</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="mb-24 md:mb-32">
+          <h2 className="text-2xl md:text-3xl font-light mb-6 md:mb-8 px-4">Neubauprojekte</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
             {newBuildings.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -243,7 +243,7 @@ export default function ProjektePage() {
                       </motion.div>
                     </div>
 
-                    <div className="absolute bottom-0 inset-x-0 p-8 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                    <div className="absolute bottom-0 inset-x-0 p-8 md:p-12 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
                       <motion.div
                         animate={{
                           y: hoveredProject === project.id ? 0 : 10,
