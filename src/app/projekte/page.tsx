@@ -442,9 +442,13 @@ export default function ProjektePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-slate-600 via-white to-slate-600"
+                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-white to-emerald-400 relative z-10"
               >
                 Konzeptstudien
+                {/* Text Shadow Effect */}
+                <span className="absolute -bottom-2 left-0 w-full text-emerald-900/30 blur-sm z-0">
+                  Konzeptstudien
+                </span>
               </motion.h2>
               
               <motion.p
