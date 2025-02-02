@@ -397,10 +397,10 @@ export default function ProjektePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative mt-16 md:mt-32 pt-16 md:pt-0 bg-gradient-to-br from-green-900 via-green-800 to-green-900 rounded-3xl overflow-hidden"
+          className="relative mt-16 md:mt-32 pt-16 md:pt-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 rounded-3xl overflow-hidden"
         >
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-600/20 via-transparent to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent"></div>
             {/* Animated background elements */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -413,7 +413,7 @@ export default function ProjektePage() {
                 repeat: Infinity,
                 repeatType: "reverse"
               }}
-              className="absolute top-1/4 left-1/4 w-48 md:w-96 h-48 md:h-96 bg-green-500/30 rounded-full blur-3xl"
+              className="absolute top-1/4 left-1/4 w-48 md:w-96 h-48 md:h-96 bg-blue-500/30 rounded-full blur-3xl"
             />
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -427,7 +427,7 @@ export default function ProjektePage() {
                 repeatType: "reverse",
                 delay: 1
               }}
-              className="absolute bottom-1/3 right-1/3 w-48 md:w-96 h-48 md:h-96 bg-green-500/20 rounded-full blur-3xl"
+              className="absolute bottom-1/3 right-1/3 w-48 md:w-96 h-48 md:h-96 bg-blue-500/20 rounded-full blur-3xl"
             />
           </div>
           
@@ -442,7 +442,7 @@ export default function ProjektePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-white to-emerald-400"
+                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-white to-blue-400"
               >
                 Konzeptstudien
               </motion.h2>
@@ -469,14 +469,14 @@ export default function ProjektePage() {
               >
                 <Link 
                   href="/projekte/konzepte"
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium text-white bg-emerald-600 rounded-full overflow-hidden transition-all duration-300 hover:bg-emerald-700 w-full sm:w-auto"
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium text-white bg-blue-600 rounded-full overflow-hidden transition-all duration-300 hover:bg-blue-700 w-full sm:w-auto"
                 >
                   <span className="relative z-10">Konzepte entdecken</span>
                   <motion.div
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 1 }}
-                    className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 opacity-50"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 opacity-50"
                   />
                 </Link>
               </motion.div>
@@ -500,7 +500,7 @@ export default function ProjektePage() {
                   repeatType: "reverse"
                 }
               }}
-              className="hidden md:block absolute left-10 top-1/4 w-24 h-24 border border-emerald-500/30 rounded-full"
+              className="hidden md:block absolute left-10 top-1/4 w-24 h-24 border border-blue-500/30 rounded-full"
             />
             <motion.div
               animate={{ 
@@ -520,7 +520,7 @@ export default function ProjektePage() {
                   delay: 1
                 }
               }}
-              className="hidden md:block absolute right-10 bottom-1/4 w-32 h-32 border-2 border-emerald-500/20 rounded-full"
+              className="hidden md:block absolute right-10 bottom-1/4 w-32 h-32 border-2 border-blue-500/20 rounded-full"
             />
           </div>
         </motion.section>
