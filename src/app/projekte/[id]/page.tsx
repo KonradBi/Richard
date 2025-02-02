@@ -344,8 +344,8 @@ export default function ProjectDetail() {
           <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-8">Projektimpressionen</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {project.images.slice(1).map((image, index) => {
-              const imageName = image.split('/').pop() || ''
-              const description = project.imageDescriptions[imageName as keyof typeof project.imageDescriptions]
+              const imageName = image.split('/').pop() || '';
+              const description = project.imageDescriptions[imageName as keyof typeof project.imageDescriptions];
               
               return (
                 <motion.div
@@ -377,7 +377,7 @@ export default function ProjectDetail() {
                     </div>
                   </div>
                 </motion.div>
-              )
+              );
             })}
           </div>
         </motion.div>
