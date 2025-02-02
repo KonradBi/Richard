@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import Image from "next/image"
-import Link from "next/link"
-import { useParams } from "next/navigation"
-import { useState } from 'react'
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
-interface ProjectData {
+type ProjectData = {
   title: string;
   location: string;
   description: string;
@@ -15,11 +15,11 @@ interface ProjectData {
   facts: string[];
   services: string[];
   copyright: string;
-}
+};
 
-interface ProjectsData {
+type ProjectsData = {
   [key: string]: ProjectData;
-}
+};
 
 // Projektdaten
 const projectsData: ProjectsData = {
@@ -213,9 +213,9 @@ const projectsData: ProjectsData = {
     ],
     copyright: " arc MUETZE"
   },
-}
+};
 
-const ProjectDetail: React.FC = () => {
+export default function Page() {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { scrollY } = useScroll();
@@ -230,9 +230,9 @@ const ProjectDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* Hero Section mit Hauptbild */}
-      <div className="relative h-[85vh] overflow-hidden">
+      <section className="relative h-[85vh] overflow-hidden">
         {/* Zurück-Button */}
         <div className="absolute top-8 left-8 z-50">
           <Link href="/projekte">
@@ -246,7 +246,9 @@ const ProjectDetail: React.FC = () => {
         </div>
 
         <motion.div
-          style={{ scale: imageScale }}
+          style={{ 
+            scale: imageScale,
+          }}
           className="absolute inset-0"
         >
           <Image
@@ -257,7 +259,6 @@ const ProjectDetail: React.FC = () => {
             priority
             quality={100}
           />
-          {/* Verstärkter Gradient für bessere Lesbarkeit */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60" />
         </motion.div>
 
@@ -265,31 +266,25 @@ const ProjectDetail: React.FC = () => {
         <motion.div 
           style={{ 
             opacity: titleOpacity,
-            y: titleTranslateY
+            y: titleTranslateY,
           }}
           className="absolute inset-0 flex items-center justify-center px-4"
         >
           <div className="w-full max-w-7xl mx-auto text-center">
             <div className="space-y-4 md:space-y-6">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight break-words hyphens-auto"
-                  style={{
-                    textShadow: '0 4px 12px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.9)'
-                  }}>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight break-words hyphens-auto">
                 {project.title}
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-100 font-light break-words"
-                 style={{
-                   textShadow: '0 2px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.9)'
-                 }}>
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-100 font-light break-words">
                 {project.location}
               </p>
             </div>
           </div>
         </motion.div>
-      </div>
+      </section>
 
       {/* Projektbeschreibung und Details */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
           {/* Projektbeschreibung */}
           <motion.div
@@ -299,7 +294,9 @@ const ProjectDetail: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="prose prose-lg max-w-none"
           >
-            <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 md:mb-6">Projektbeschreibung</h2>
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 md:mb-6">
+              Projektbeschreibung
+            </h2>
             <p className="text-base md:text-lg text-gray-600 leading-relaxed break-words">
               {project.description}
             </p>
@@ -318,7 +315,9 @@ const ProjectDetail: React.FC = () => {
           >
             {/* Projektfakten */}
             <div>
-              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">Projektfakten</h3>
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
+                Projektfakten
+              </h3>
               <ul className="space-y-2">
                 {project.facts.map((fact, index) => (
                   <li key={index} className="flex items-start space-x-2 text-gray-600">
@@ -333,7 +332,9 @@ const ProjectDetail: React.FC = () => {
 
             {/* Leistungen */}
             <div>
-              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">Leistungen</h3>
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
+                Leistungen
+              </h3>
               <ul className="space-y-2">
                 {project.services.map((service, index) => (
                   <li key={index} className="flex items-start space-x-2 text-gray-600">
@@ -356,7 +357,9 @@ const ProjectDetail: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 md:mt-24"
         >
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-8">Projektimpressionen</h2>
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-8">
+            Projektimpressionen
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {project.images.slice(1).map((image, index) => {
               const imageName = image.split('/').pop() || '';
@@ -396,6 +399,7 @@ const ProjectDetail: React.FC = () => {
             })}
           </div>
         </motion.div>
+      </section>
 
       {/* Vollbild-Ansicht */}
       {selectedImage && (
@@ -403,13 +407,13 @@ const ProjectDetail: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative w-full max-w-7xl aspect-[16/9]">
+          <div className="relative w-full h-full max-w-7xl mx-auto p-4">
             <Image
               src={selectedImage}
-              alt="Vergrößerte Ansicht"
+              alt="Vollbild"
               fill
               className="object-contain"
               quality={100}
@@ -425,8 +429,6 @@ const ProjectDetail: React.FC = () => {
           </button>
         </motion.div>
       )}
-    </div>
-  )
+    </main>
+  );
 }
-
-export default ProjectDetail;
