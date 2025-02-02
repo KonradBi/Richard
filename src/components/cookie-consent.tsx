@@ -86,7 +86,7 @@ const CookieConsent = ({
                             <Button
                                 onClick={decline}
                                 variant="outline"
-                                className="flex-1 md:flex-none"
+                                className="flex-1 md:flex-none bg-gray-100 hover:bg-gray-200 border-gray-200"
                             >
                                 Ablehnen
                             </Button>
