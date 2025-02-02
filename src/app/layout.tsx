@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="de" className={`${inter.variable} scroll-smooth`}>
       <body className="font-sans antialiased">
         <Header />
-        <main className="min-h-screen">
+        <main className="min-h-screen pt-32 md:pt-24">
           {children}
         </main>
         <Footer />

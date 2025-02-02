@@ -60,49 +60,43 @@ const CookieConsent = ({
     return variant !== "small" ? (
         <div
             className={cn(
-                "fixed z-[200] bottom-0 left-0 right-0 sm:left-4 sm:bottom-4 w-full sm:max-w-md duration-700",
+                "fixed z-[200] bottom-0 left-0 right-0 w-full duration-700 bg-background/80 backdrop-blur-lg border-t border-border shadow-lg",
                 !isOpen
                     ? "transition-[opacity,transform] translate-y-8 opacity-0"
                     : "transition-[opacity,transform] translate-y-0 opacity-100",
                 hide && "hidden"
             )}
         >
-            <div className="dark:bg-card bg-background rounded-md m-3 border border-border shadow-lg">
-                <div className="grid gap-2">
-                    <div className="border-b border-border h-14 flex items-center justify-between p-4">
-                        <h1 className="text-lg font-medium">Datenschutz-Einwilligung</h1>
-                        <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
-                    </div>
-                    <div className="p-4">
-                        <p className="text-sm font-normal text-start">
-                            Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
-                            Diese Cookies helfen uns dabei, die Website-Nutzung zu analysieren und unsere Dienste zu verbessern.
-                            <br />
-                            <br />
-                            <span className="text-xs">
-                                Mit Klick auf "
-                                <span className="font-medium opacity-80">
-                                    Akzeptieren
-                                </span>
-                                " stimmen Sie der Verwendung von Cookies gemäß unserer Datenschutzerklärung zu.
-                            </span>
-                            <br />
-                            <a href="/datenschutz" className="text-xs underline">
-                                Mehr erfahren
-                            </a>
-                        </p>
-                    </div>
-                    <div className="flex gap-2 p-4 py-5 border-t border-border dark:bg-background/20">
-                        <Button onClick={accept} className="w-full">
-                            Akzeptieren
-                        </Button>
-                        <Button
-                            onClick={decline}
-                            className="w-full"
-                            variant="secondary"
-                        >
-                            Ablehnen
-                        </Button>
+            <div className="container mx-auto">
+                <div className="py-4 px-4 md:px-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                            <CookieIcon className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                            <div className="space-y-1">
+                                <h1 className="text-sm font-medium">Datenschutz-Einwilligung</h1>
+                                <p className="text-sm text-muted-foreground">
+                                    Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.
+                                    <a href="/datenschutz" className="ml-1 underline underline-offset-4 hover:text-foreground transition-colors">
+                                        Mehr erfahren
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 md:flex-shrink-0">
+                            <Button
+                                onClick={decline}
+                                variant="outline"
+                                className="flex-1 md:flex-none"
+                            >
+                                Ablehnen
+                            </Button>
+                            <Button 
+                                onClick={accept}
+                                className="flex-1 md:flex-none"
+                            >
+                                Akzeptieren
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

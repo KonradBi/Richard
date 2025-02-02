@@ -37,14 +37,14 @@ export default function Haus0Page() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4"
+          className="relative z-10 h-full flex flex-col justify-end md:justify-center items-center text-center px-4 pb-32 md:pb-0"
         >
           {/* In Development Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-6 md:mb-8"
           >
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-black/50 text-emerald-300 ring-1 ring-emerald-400 shadow-lg backdrop-blur-sm">
               <svg className="w-4 h-4 mr-2 animate-spin" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@ export default function Haus0Page() {
             </span>
           </motion.div>
 
-          <h1 className="text-7xl md:text-9xl font-bold mb-6">
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
               Haus 0
             </span>
@@ -65,12 +65,12 @@ export default function Haus0Page() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="max-w-3xl mx-auto space-y-6 text-shadow-lg backdrop-blur-[2px] p-6 rounded-xl bg-black/30"
+            className="max-w-3xl mx-auto space-y-4 md:space-y-6 text-shadow-lg backdrop-blur-[2px] p-4 md:p-6 rounded-xl bg-black/30"
           >
-            <p className="text-xl md:text-2xl text-white leading-relaxed font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl text-white leading-relaxed font-medium">
               Ein revolutionäres Energiesparkonzept der nächsten Generation, das wir aktuell entwickeln.
             </p>
-            <p className="text-lg text-gray-100 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-100 leading-relaxed">
               Unser Ziel: Ein vollständig energetisch autarkes Haus, das durch den Einsatz nachhaltiger Materialien 
               und modernster Technologien ohne externe Energiequellen auskommt. Innovative Lösungen in den Bereichen 
               Solarenergie, Wärmerückgewinnung und effizienter Bauweise werden höchsten Wohnkomfort bei minimalen 
@@ -83,7 +83,7 @@ export default function Haus0Page() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 flex flex-wrap justify-center gap-3 backdrop-blur-sm p-4 rounded-xl bg-black/20"
+            className="mt-6 md:mt-8 flex flex-wrap justify-center gap-2 md:gap-3 backdrop-blur-sm p-3 md:p-4 rounded-xl bg-black/20"
           >
             {[
               "Energieautark",
@@ -94,7 +94,7 @@ export default function Haus0Page() {
             ].map((tag, index) => (
               <span
                 key={index}
-                className="px-4 py-2 rounded-full text-sm bg-white/10 text-white shadow-lg backdrop-blur-sm hover:bg-white/20 transition-colors"
+                className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-sm bg-white/10 text-white shadow-lg backdrop-blur-sm hover:bg-white/20 transition-colors"
               >
                 {tag}
               </span>
@@ -104,7 +104,7 @@ export default function Haus0Page() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
+          className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-10 w-full md:w-auto"
           animate={{ 
             y: [0, 10, 0],
             opacity: [0.5, 1, 0.5]
@@ -115,7 +115,7 @@ export default function Haus0Page() {
           }}
         >
           <div className="flex flex-col items-center">
-            <span className="text-gray-300 text-sm uppercase tracking-widest mb-2">Entdecken</span>
+            <span className="text-gray-300 text-sm uppercase tracking-widest mb-2 text-center">Entdecken</span>
             <svg className="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>

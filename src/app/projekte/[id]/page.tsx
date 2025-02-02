@@ -252,17 +252,17 @@ export default function ProjectDetail() {
             opacity: titleOpacity,
             y: titleTranslateY
           }}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center px-4"
         >
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <div className="space-y-6">
-              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-white tracking-tight"
+          <div className="w-full max-w-7xl mx-auto text-center">
+            <div className="space-y-4 md:space-y-6">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight break-words hyphens-auto"
                   style={{
                     textShadow: '0 4px 12px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.9)'
                   }}>
                 {project.title}
               </h1>
-              <p className="text-xl md:text-2xl text-gray-100 font-light"
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-100 font-light break-words"
                  style={{
                    textShadow: '0 2px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.9)'
                  }}>
@@ -274,18 +274,18 @@ export default function ProjectDetail() {
       </div>
 
       {/* Projektbeschreibung und Details */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
           {/* Projektbeschreibung */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="prose prose-lg"
+            className="prose prose-lg max-w-none"
           >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Projektbeschreibung</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 md:mb-6">Projektbeschreibung</h2>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed break-words">
               {project.description}
             </p>
             <p className="text-sm text-gray-400 mt-4">
@@ -299,91 +299,88 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-gray-50 rounded-3xl p-8 space-y-8"
+            className="space-y-8"
           >
+            {/* Projektfakten */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Projektfakten</h3>
-              <ul className="space-y-4">
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">Projektfakten</h3>
+              <ul className="space-y-2">
                 {project.facts.map((fact, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="w-5 h-5 text-green-600 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <li key={index} className="flex items-start space-x-2 text-gray-600">
+                    <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-600">{fact}</span>
+                    <span className="text-sm md:text-base">{fact}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
+            {/* Leistungen */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Leistungen</h3>
-              <ul className="space-y-4">
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">Leistungen</h3>
+              <ul className="space-y-2">
                 {project.services.map((service, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="w-5 h-5 text-green-600 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <li key={index} className="flex items-start space-x-2 text-gray-600">
+                    <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-gray-600">{service}</span>
+                    <span className="text-sm md:text-base">{service}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Standort</h3>
-              <div className="flex items-center text-gray-600">
-                <svg className="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>{project.location}</span>
-              </div>
             </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Masonry Bildergalerie */}
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {project.images.slice(1).map((image, index) => {
-            const imageName = image.split('/').pop() || ''
-            const description = project.imageDescriptions[imageName as keyof typeof project.imageDescriptions]
-            
-            return (
-              <motion.div
-                key={image}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group relative ${
-                  index % 3 === 0 ? 'lg:col-span-2' : ''
-                }`}
-              >
-                <div className={`relative overflow-hidden rounded-2xl ${
-                  index % 3 === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]'
-                }`}>
-                  <Image
-                    src={image}
-                    alt={description}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    onClick={() => setSelectedImage(image)}
-                  />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-0 p-6 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <p className="text-white text-lg font-light">
-                      {description}
-                    </p>
+        {/* Bildergalerie */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16 md:mt-24"
+        >
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-8">Projektimpressionen</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {project.images.slice(1).map((image, index) => {
+              const imageName = image.split('/').pop() || ''
+              const description = project.imageDescriptions[imageName as keyof typeof project.imageDescriptions]
+              
+              return (
+                <motion.div
+                  key={image}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`group relative ${
+                    index % 3 === 0 ? 'lg:col-span-2' : ''
+                  }`}
+                >
+                  <div className={`relative overflow-hidden rounded-2xl ${
+                    index % 3 === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]'
+                  }`}>
+                    <Image
+                      src={image}
+                      alt={description}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      onClick={() => setSelectedImage(image)}
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 p-6 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <p className="text-white text-lg font-light">
+                        {description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </motion.div>
 
       {/* Vollbild-Ansicht */}
       {selectedImage && (
