@@ -6,8 +6,23 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { useState } from 'react'
 
+interface ProjectData {
+  title: string;
+  location: string;
+  description: string;
+  images: string[];
+  imageDescriptions: { [key: string]: string };
+  facts: string[];
+  services: string[];
+  copyright: string;
+}
+
+interface ProjectsData {
+  [key: string]: ProjectData;
+}
+
 // Projektdaten
-const projectsData = {
+const projectsData: ProjectsData = {
   "lucille-grahn": {
     title: "Lucille-Grahn-Straße",
     location: "München Haidhausen",
@@ -200,18 +215,18 @@ const projectsData = {
   },
 }
 
-export default function ProjectDetail() {
-  const { id } = useParams()
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
-  const { scrollY } = useScroll()
+const ProjectDetail: React.FC = () => {
+  const { id } = useParams();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { scrollY } = useScroll();
   
-  const project = projectsData[id as keyof typeof projectsData]
-  const imageScale = useTransform(scrollY, [0, 500], [1.1, 1])
-  const titleOpacity = useTransform(scrollY, [0, 200], [1, 0])
-  const titleTranslateY = useTransform(scrollY, [0, 200], [0, 50])
+  const project = projectsData[id as keyof typeof projectsData];
+  const imageScale = useTransform(scrollY, [0, 500], [1.1, 1]);
+  const titleOpacity = useTransform(scrollY, [0, 200], [1, 0]);
+  const titleTranslateY = useTransform(scrollY, [0, 200], [0, 50]);
   
   if (!project) {
-    return <div>Projekt nicht gefunden</div>
+    return <div>Projekt nicht gefunden</div>;
   }
 
   return (
@@ -413,3 +428,5 @@ export default function ProjectDetail() {
     </div>
   )
 }
+
+export default ProjectDetail;
