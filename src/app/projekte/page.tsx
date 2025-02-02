@@ -453,10 +453,9 @@ export default function ProjektePage() {
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="text-base sm:text-lg md:text-2xl text-gray-300 mb-8 md:mb-12 leading-relaxed"
               >
-                Entdecken Sie unsere visionären Architekturkonzepte. 
-                Hier verschmelzen Innovation und Nachhaltigkeit zu 
-                zukunftsweisenden Entwürfen, die die Grenzen des 
-                Möglichen neu definieren.
+                Entdecken Sie unsere Konzeptstudien und Entwürfe. 
+                Hier verbinden wir nachhaltige Architektur mit 
+                innovativen Ideen für die Zukunft.
               </motion.p>
               
               <motion.div
