@@ -21,7 +21,7 @@ const BackgroundBlob = () => (
       repeat: Infinity,
       ease: "easeInOut",
     }}
-    className="absolute w-[800px] h-[800px] rounded-full bg-gradient-to-br from-emerald-500/5 to-primary-500/5 blur-3xl"
+    className="absolute w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary-200/10 to-primary-300/10 blur-3xl"
   />
 )
 
@@ -66,50 +66,52 @@ export function Quote() {
     }
   }
 
+  const authorVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { delay: 4 } }
+  }
+
   return (
-    <section ref={containerRef} className="relative py-32 overflow-hidden bg-neutral-950">
-      {/* Animated background blobs */}
-      <div className="absolute inset-0 opacity-70">
+    <section
+      ref={containerRef}
+      className="relative py-32 overflow-hidden bg-neutral-900"
+    >
+      {/* Background */}
+      <motion.div
+        style={{ y: backgroundY }}
+        className="absolute inset-0 flex items-center justify-center opacity-70"
+      >
         <div className="absolute -top-[400px] -left-[400px]">
           <BackgroundBlob />
         </div>
         <div className="absolute -bottom-[400px] -right-[400px]">
           <BackgroundBlob />
         </div>
-      </div>
-
-      {/* Subtle grid pattern */}
-      <motion.div 
-        style={{ y: backgroundY }}
-        className="absolute inset-0"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,neutral-800_1px,transparent_1px)] [background-size:48px_48px] opacity-[0.15]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-transparent to-neutral-950" />
       </motion.div>
 
       {/* Content */}
-      <motion.div 
+      <motion.div
+        ref={ref}
         style={{ y: contentY }}
         className="relative container mx-auto px-4"
       >
         <div className="max-w-4xl mx-auto text-center">
           <blockquote className="relative">
-            <span className="absolute -top-8 -left-4 text-6xl text-emerald-500/20">"</span>
-            <span className="absolute -bottom-8 -right-4 text-6xl text-emerald-500/20">"</span>
+            <span className="absolute -top-8 -left-4 text-6xl text-primary-200/20">"</span>
+            <span className="absolute -bottom-8 -right-4 text-6xl text-primary-200/20">"</span>
             
             <motion.div
-              ref={ref}
-              className="text-3xl md:text-5xl font-light leading-relaxed tracking-wide text-neutral-200 [word-spacing:0.3em]"
+              variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              variants={containerVariants}
+              className="text-3xl md:text-5xl font-light leading-relaxed tracking-wide text-neutral-50 [word-spacing:0.3em]"
             >
               {words.map((word, index) => (
                 <motion.span
                   key={index}
                   className={`inline-block mx-[0.15em] ${
                     word === "Licht" 
-                      ? "text-emerald-400 font-normal relative after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-emerald-400/30" 
+                      ? "text-primary-200 font-normal relative after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-primary-200/30" 
                       : ""
                   }`}
                   variants={wordVariants}
@@ -126,7 +128,7 @@ export function Quote() {
               transition={{ delay: 4 }}
               className="mt-12"
             >
-              <cite className="text-neutral-400 tracking-wide">— {author}</cite>
+              <cite className="text-primary-200/80 tracking-wide">— {author}</cite>
             </motion.footer>
           </blockquote>
         </div>

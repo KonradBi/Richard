@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
-import Link from "next/link"
 
 const projects = [
   {
@@ -41,10 +40,10 @@ export function Expertise() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Überschrift */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl font-light tracking-tight text-gray-900 sm:text-5xl mb-4">
+          <h2 className="text-4xl font-light tracking-tight text-neutral-600 sm:text-5xl mb-4">
             Neubau · Umbau · Sanierung
           </h2>
-          <p className="max-w-2xl mx-auto text-lg text-gray-600">
+          <p className="max-w-2xl mx-auto text-lg text-neutral-600">
             Entdecken Sie eine Auswahl unserer realisierten Projekte
           </p>
         </div>
@@ -52,9 +51,8 @@ export function Expertise() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {projects.map((project, index) => (
-            <Link
+            <div
               key={project.id}
-              href={project.href}
               className="group relative block"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -78,7 +76,7 @@ export function Expertise() {
                   <p className="text-base text-white/80 leading-relaxed">{project.description}</p>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

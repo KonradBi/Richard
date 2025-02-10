@@ -7,11 +7,11 @@ import { useRef, useState, useEffect } from "react"
 import { ChevronDown, ArrowRight } from "lucide-react"
 
 const rotatingTexts = [
-  { text: "die Zukunft", color: "from-primary-500 to-primary-600" },
-  { text: "nachhaltiges Leben", color: "from-emerald-500 to-emerald-600" },
-  { text: "moderne Städte", color: "from-green-500 to-green-600" },
-  { text: "Ihre Vision", color: "from-primary-500 to-emerald-500" },
-  { text: "kommende Generationen", color: "from-emerald-500 to-primary-500" }
+  { text: "die Zukunft", color: "from-primary-200 to-primary-300" },
+  { text: "nachhaltiges Leben", color: "from-primary-300 to-primary-200" },
+  { text: "moderne Städte", color: "from-primary-200 to-primary-300" },
+  { text: "Ihre Vision", color: "from-primary-300 to-primary-200" },
+  { text: "kommende Generationen", color: "from-primary-200 to-primary-300" }
 ]
 
 export function Hero() {
@@ -35,14 +35,13 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-neutral-50">
+    <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-white">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute inset-0 bg-gradient-radial from-primary-100/50 to-transparent" />
-        <div className="absolute inset-0" style={{
-          backgroundImage: "radial-gradient(circle at 2px 2px, #3d8c3d 1px, transparent 0)",
-          backgroundSize: "40px 40px"
-        }} />
+      <div className="absolute inset-0">
+        {/* Top white gradient */}
+        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white via-white to-transparent z-10" />
+        {/* Main background gradient */}
+        <div className="absolute inset-0 bg-gradient-radial from-primary-200/30 to-transparent" />
       </div>
 
       {/* Content */}

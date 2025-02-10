@@ -30,7 +30,7 @@ const PulsingCircle = ({ isActive }: { isActive: boolean }) => (
   <>
     <motion.circle
       r="4"
-      fill="rgb(52 211 153)"
+      fill="#BCC58C"
       initial={{ opacity: 0.1 }}
       animate={{
         opacity: isActive ? [0.1, 0.2, 0.1] : 0.1,
@@ -45,7 +45,7 @@ const PulsingCircle = ({ isActive }: { isActive: boolean }) => (
     />
     <motion.circle
       r="2"
-      fill="rgb(52 211 153)"
+      fill="#A4B161"
       initial={{ opacity: 0.6 }}
       animate={{
         opacity: isActive ? [0.6, 0.8, 0.6] : 0.6,
@@ -63,7 +63,7 @@ const PulsingCircle = ({ isActive }: { isActive: boolean }) => (
 const MovingLine = ({ x1, y1, x2, y2, isHighlighted }: { x1: number, y1: number, x2: number, y2: number, isHighlighted: boolean }) => (
   <motion.circle
     r="1"
-    fill="rgb(52 211 153)"
+    fill="#BCC58C"
     initial={{ opacity: 0 }}
     animate={{
       opacity: isHighlighted ? [0, 0.4, 0] : 0,
@@ -133,11 +133,11 @@ export function Team() {
   }
 
   return (
-    <section ref={containerRef} className="py-32 relative overflow-hidden bg-gray-900">
+    <section ref={containerRef} className="py-32 relative overflow-hidden bg-neutral-900">
       {/* Hintergrund mit subtilen Effekten */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,gray-700_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.1]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/10 via-transparent to-emerald-900/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#606060_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.1]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-200/10 via-transparent to-primary-300/10" />
       </div>
       
       <div className="relative container mx-auto px-4">
@@ -145,7 +145,7 @@ export function Team() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            className="text-emerald-400 text-sm uppercase tracking-widest mb-4 block"
+            className="text-primary-200 text-sm uppercase tracking-widest mb-4 block"
           >
             Unser Team
           </motion.span>
@@ -153,7 +153,7 @@ export function Team() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-8"
+            className="text-4xl font-bold tracking-tight text-neutral-50 sm:text-5xl mb-8"
           >
             Kompetenz durch Vernetzung
           </motion.h2>
@@ -161,7 +161,7 @@ export function Team() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.3 }}
-            className="text-lg text-gray-300 max-w-3xl mx-auto"
+            className="text-lg text-neutral-300 max-w-3xl mx-auto"
           >
             Unser starkes Netzwerk aus spezialisierten Partnern ermöglicht es uns, Projekte jeder Größenordnung 
             professionell zu betreuen - vom privaten Wohnungsbau bis hin zu komplexen Gewerbeimmobilien. 
@@ -188,7 +188,7 @@ export function Team() {
                     y1={`${fromNode.y}%`}
                     x2={`${toNode.x}%`}
                     y2={`${toNode.y}%`}
-                    stroke={isHighlighted ? "rgb(52 211 153)" : "#4B5563"}
+                    stroke={isHighlighted ? "#BCC58C" : "#606060"}
                     strokeWidth={isHighlighted ? "0.3" : "0.2"}
                     initial="hidden"
                     animate="visible"
@@ -230,7 +230,7 @@ export function Team() {
                     textAnchor="middle"
                     dy="-14"
                     fontSize="4"
-                    fill={isActive || isHovered ? "rgb(52 211 153)" : "#E5E7EB"}
+                    fill={isActive || isHovered ? "#BCC58C" : "#E5E7EB"}
                     initial="hidden"
                     animate="visible"
                     custom={index}
@@ -254,7 +254,7 @@ export function Team() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 2 }}
-          className="text-center text-gray-300 mt-12 max-w-3xl mx-auto"
+          className="text-center text-neutral-300 mt-12 max-w-3xl mx-auto"
         >
           Von der ersten Planung bis zur finalen Umsetzung koordinieren wir die Expertise unserer Partner 
           und passen uns flexibel an die spezifischen Anforderungen Ihres Projekts an - unabhängig von dessen Größe und Komplexität.

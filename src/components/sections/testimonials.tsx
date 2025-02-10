@@ -8,28 +8,28 @@ const testimonials = [
     quote: "Wir sind begeistert von der Kreativität und dem Engagement des Teams. Die Zusammenarbeit war von Anfang bis Ende professionell und zielführend.",
     author: "Familie Müller",
     role: "Bauherr aus Dresden",
-    gradientFrom: "from-amber-50",
-    gradientTo: "to-orange-100"
+    gradientFrom: "from-primary-200",
+    gradientTo: "to-primary-300"
   },
   {
     quote: "Innovative Lösungen, die unsere Erwartungen übertroffen haben. Die Verbindung von Funktionalität und Design ist perfekt gelungen.",
     author: "Dr. Schmidt",
     role: "Geschäftsführer, ProBau Development GmbH",
-    gradientFrom: "from-stone-100",
-    gradientTo: "to-neutral-200"
+    gradientFrom: "from-primary-300",
+    gradientTo: "to-primary-200"
   },
   {
     quote: "Ein verlässlicher Partner mit Weitblick. Die Umsetzung unseres Projekts war vorbildlich und termingerecht.",
     author: "Michael Weber",
     role: "Bauherr aus Chemnitz",
-    gradientFrom: "from-zinc-100",
-    gradientTo: "to-slate-200"
+    gradientFrom: "from-primary-200",
+    gradientTo: "to-primary-300"
   }
 ]
 
 // Subtiles Anführungszeichen-Symbol für die Testimonials
 const QuoteIcon = () => (
-  <svg className="w-12 h-12 text-emerald-600/20" viewBox="0 0 50 50" fill="currentColor">
+  <svg className="w-12 h-12 text-primary-300/20" viewBox="0 0 50 50" fill="currentColor">
     <path d="M10,43.2c-6.5-6.1-6.8-16.1-6.8-17.3c0-1.1,0-12.3,12.3-19.7c1.1-0.6,2.5-0.2,3.1,0.9c0.6,1.1,0.2,2.5-0.9,3.1 C8.4,16.9,8.7,25.5,8.7,25.9c0,0,0.2,8.3,4.9,12.7c2.6,2.5,6.3,3.7,10.9,3.7c1.3,0,2.3,1,2.3,2.3c0,1.3-1,2.3-2.3,2.3 C18.5,46.9,13.7,45.4,10,43.2z M36.4,43.2c-6.5-6.1-6.8-16.1-6.8-17.3c0-1.1,0-12.3,12.3-19.7c1.1-0.6,2.5-0.2,3.1,0.9 c0.6,1.1,0.2,2.5-0.9,3.1c-9.3,6.7-9,15.3-9,15.7c0,0,0.2,8.3,4.9,12.7c2.6,2.5,6.3,3.7,10.9,3.7c1.3,0,2.3,1,2.3,2.3 c0,1.3-1,2.3-2.3,2.3C44.9,46.9,40.1,45.4,36.4,43.2z"/>
   </svg>
 )

@@ -9,25 +9,25 @@ const services = [
     title: "Grundlagenermittlung & Planung",
     description: "Von der ersten Idee bis zur detaillierten Ausführungsplanung begleiten wir Sie durch die HOAI-Leistungsphasen 1-5.",
     Icon: Leaf,
-    gradient: "from-emerald-500 to-primary-500"
+    gradient: "from-primary-200 to-primary-300"
   },
   {
     title: "Ausschreibung & Vergabe",
     description: "Professionelle Vorbereitung und Durchführung der Ausschreibung sowie Vergabe an qualifizierte Fachbetriebe (HOAI-LPH 6-7).",
     Icon: Building2,
-    gradient: "from-primary-500 to-emerald-500"
+    gradient: "from-primary-300 to-primary-200"
   },
   {
     title: "Bauüberwachung",
     description: "Kompetente Objektüberwachung und Qualitätssicherung während der gesamten Bauphase (HOAI-LPH 8).",
     Icon: LineChart,
-    gradient: "from-green-500 to-primary-500"
+    gradient: "from-primary-200 to-primary-300"
   },
   {
     title: "Objektbetreuung",
     description: "Umfassende Betreuung und Dokumentation bis zur Fertigstellung sowie während der Gewährleistungsphase (HOAI-LPH 9).",
     Icon: Handshake,
-    gradient: "from-primary-500 to-green-500"
+    gradient: "from-primary-300 to-primary-200"
   }
 ]
 
@@ -41,10 +41,10 @@ export function Services() {
   const y = useTransform(scrollYProgress, [0, 1], ["100px", "-100px"])
 
   return (
-    <section ref={containerRef} className="relative py-32 overflow-hidden bg-white">
+    <section ref={containerRef} className="relative py-32 overflow-hidden bg-neutral-50">
       {/* Dynamischer Hintergrund */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 via-primary-200/20 to-neutral-50" />
         <div className="absolute inset-0 opacity-[0.015]" style={{
           backgroundImage: "radial-gradient(circle at 2px 2px, #000 1px, transparent 0)",
           backgroundSize: "48px 48px"

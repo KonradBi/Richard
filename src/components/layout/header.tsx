@@ -10,6 +10,8 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   const navigation = [
+    { name: 'Startseite', href: '/' },
+    { name: 'Über uns', href: '/about' },
     { name: 'Projekte', href: '/projekte' },
     { name: 'Haus 0', href: '/haus-0' },
     { name: 'Kontakt', href: '/kontakt' },
