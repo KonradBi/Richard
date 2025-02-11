@@ -29,7 +29,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/about"
+                  href="/uberuns"
                   className="text-base text-neutral-300 hover:text-primary-200 transition-colors"
                 >
                   Über uns
@@ -37,7 +37,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/projects"
+                  href="/projekte"
                   className="text-base text-neutral-300 hover:text-primary-200 transition-colors"
                 >
                   Projekte
@@ -45,7 +45,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/house-0"
+                  href="/haus-0"
                   className="text-base text-neutral-300 hover:text-primary-200 transition-colors"
                 >
                   Haus 0
@@ -53,7 +53,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/kontakt"
                   className="text-base text-neutral-300 hover:text-primary-200 transition-colors"
                 >
                   Kontakt

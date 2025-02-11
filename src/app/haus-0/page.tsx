@@ -55,8 +55,8 @@ export default function Haus0Page() {
             </span>
           </motion.div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold mb-6 relative z-20">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] relative z-20">
               Haus 0
             </span>
           </h1>
@@ -104,19 +104,23 @@ export default function Haus0Page() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-10 w-full md:w-auto"
+          className="absolute bottom-6 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20 w-auto"
+          initial={{ opacity: 0 }}
           animate={{ 
-            y: [0, 10, 0],
-            opacity: [0.5, 1, 0.5]
+            opacity: 1,
+            y: [0, 10, 0]
           }}
           transition={{ 
-            repeat: Infinity,
-            duration: 2
+            opacity: { duration: 1, delay: 1 },
+            y: {
+              repeat: Infinity,
+              duration: 2
+            }
           }}
         >
-          <div className="flex flex-col items-center">
-            <span className="text-gray-300 text-sm uppercase tracking-widest mb-2 text-center">Entdecken</span>
-            <svg className="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full">
+            <span className="text-white text-sm uppercase tracking-widest mb-2 text-center">Entdecken</span>
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
