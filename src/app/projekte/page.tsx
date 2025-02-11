@@ -80,49 +80,40 @@ export default function ProjektePage() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f4f7f4] via-white to-[#f4f7f4]">
+    <div className="min-h-screen bg-white">
       {/* Hero Section mit spektakulärem Design */}
       <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Organische Hintergrundformen */}
+        {/* Background Pattern */}
         <div className="absolute inset-0">
-          {/* Große animierte Blobs - angepasste Größen für Mobile */}
+          {/* Top white gradient */}
+          <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white via-white to-transparent z-10" />
+          {/* Main background gradient */}
+          <div className="absolute inset-0 bg-gradient-radial from-primary-200/30 to-transparent" />
+          
+          {/* Animated Blobs */}
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.7 }}
+            animate={{ scale: 1, opacity: 0.3 }}
             transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute top-1/4 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-green-100 rounded-full mix-blend-multiply filter blur-3xl"
+            className="absolute top-1/4 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-primary-100/50 rounded-full mix-blend-multiply filter blur-3xl"
           />
           <motion.div 
             initial={{ scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.7 }}
+            animate={{ scale: 1, opacity: 0.3 }}
             transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
-            className="absolute top-1/3 right-1/4 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-green-200 rounded-full mix-blend-multiply filter blur-3xl"
+            className="absolute top-1/3 right-1/4 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-emerald-100/50 rounded-full mix-blend-multiply filter blur-3xl"
           />
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1.1, opacity: 0.7 }}
+            animate={{ scale: 1.1, opacity: 0.3 }}
             transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", delay: 1 }}
-            className="absolute bottom-1/4 left-1/2 w-[275px] md:w-[550px] h-[275px] md:h-[550px] bg-green-300 rounded-full mix-blend-multiply filter blur-3xl"
+            className="absolute bottom-1/4 left-1/2 w-[275px] md:w-[550px] h-[275px] md:h-[550px] bg-primary-200/50 rounded-full mix-blend-multiply filter blur-3xl"
           />
-          
-          {/* Zusätzliche dekorative Elemente */}
-          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03]"></div>
-          <div 
-            className="absolute inset-0" 
-            style={{
-              backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 100%)',
-              backgroundSize: '100% 100%'
-            }}
-          ></div>
           
           {/* Geometrische Muster */}
           <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                backgroundSize: '30px 30px'
-              }}
-            ></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,neutral-200_1px,transparent_1px)] [background-size:48px_48px] opacity-[0.015]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 via-transparent to-neutral-50" />
           </div>
         </div>
 
@@ -139,9 +130,12 @@ export default function ProjektePage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
+              <h2 className="text-sm md:text-base text-primary-600 uppercase tracking-[0.2em] mb-6">
+                Referenzen
+              </h2>
               <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 md:mb-8 leading-tight">
-                <span className="block bg-gradient-to-br from-green-900 via-green-600 to-green-400 bg-clip-text text-transparent">
-                  Unsere Projekte
+                <span className="block text-neutral-800">
+                  Unsere <span className="text-emerald-600">Projekte</span>
                 </span>
               </h1>
             </motion.div>
@@ -151,13 +145,13 @@ export default function ProjektePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light px-4">
+              <p className="text-xl sm:text-2xl md:text-3xl text-neutral-600 max-w-4xl mx-auto leading-relaxed font-light px-4">
                 Nachhaltige Architektur im Einklang mit Mensch und Natur.
                 <motion.span 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 1 }}
-                  className="block mt-4 text-green-700"
+                  className="block mt-4 text-primary-600"
                 >
                   Entdecken Sie unsere Vision für die Zukunft des Bauens.
                 </motion.span>
@@ -169,27 +163,42 @@ export default function ProjektePage() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1.5, delay: 1.2 }}
-              className="w-24 md:w-32 h-1 bg-gradient-to-r from-green-600 to-green-400 mx-auto rounded-full"
+              className="w-24 md:w-32 h-1 bg-gradient-to-r from-primary-500 to-primary-400 mx-auto rounded-full"
             />
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - Only visible on mobile */}
+        {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4 md:hidden"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-12 left-[calc(50%-3rem)] md:left-[calc(50%-1.5rem)]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
         >
-          <span className="text-xs text-gray-500 uppercase tracking-widest text-center">Scrollen</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="flex justify-center"
+          <motion.div 
+            className="flex flex-col items-center gap-3"
+            animate={{ y: [0, -8, 0] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           >
-            <svg className="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+            <span className="text-primary-600/60 text-sm uppercase tracking-widest">Scroll</span>
+            <motion.div
+              animate={{ 
+                y: [0, 8, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <svg className="w-6 h-6 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

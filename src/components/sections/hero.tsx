@@ -60,7 +60,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h2 className="text-sm md:text-base text-primary-600 uppercase tracking-[0.2em] mb-6">
-                arc muetze
+                Richard Mütze
               </h2>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-neutral-800 leading-tight mb-12">
                 Nachhaltige <br/>
