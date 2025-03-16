@@ -104,6 +104,49 @@ const numberVariants = {
   })
 }
 
+// Komponente für animierte Zahlen, die hochzählen
+function CountUp({ end, duration = 1.5, delay = 0 }) {
+  const [count, setCount] = useState(0);
+  const nodeRef = useRef(null);
+  const isInView = useInView(nodeRef, { once: true, amount: 0.3 });
+  
+  useEffect(() => {
+    if (!isInView) return;
+    
+    let startTime: number;
+    let animationFrame: number;
+    const endValue = parseInt(end);
+    
+    const updateCount = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      
+      // Easing-Funktion für natürlichere Animation
+      const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      
+      setCount(Math.floor(easedProgress * endValue));
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(updateCount);
+      }
+    };
+    
+    // Verzögerung vor Start der Animation
+    const timer = setTimeout(() => {
+      animationFrame = requestAnimationFrame(updateCount);
+    }, delay * 1000);
+    
+    return () => {
+      clearTimeout(timer);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [isInView, end, duration, delay]);
+  
+  return <span ref={nodeRef}>{count}</span>;
+}
+
 // Fixed Typewriter animation component
 function TypewriterText({ text, delay = 3, speed = 40 }) {
   const [displayText, setDisplayText] = useState("");
@@ -248,37 +291,33 @@ export function Services() {
               animate={isStatsInView ? "visible" : "hidden"}
               className="mt-32 mb-16"
             >
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
                     variants={itemVariants}
-                    custom={index}
-                    className="flex flex-col items-center"
+                    className="relative bg-white/50 backdrop-blur-sm rounded-2xl p-6 text-center shadow-sm border border-nature-sage/10 group"
                   >
-                    {/* Icon Container */}
                     <motion.div
                       variants={iconVariants}
                       whileHover="hover"
-                      className="mb-6 w-20 h-20 rounded-2xl bg-nature-sand/30 flex items-center justify-center"
+                      className="mx-auto mb-4 w-12 h-12 rounded-xl bg-nature-sand/50 flex items-center justify-center"
                     >
-                      <stat.Icon className="w-8 h-8 text-nature-darkBrown/70" />
+                      <stat.Icon className="h-6 w-6 text-nature-teal group-hover:text-nature-warmBrown transition-colors duration-300" />
                     </motion.div>
                     
-                    {/* Number with counting animation */}
                     <motion.p
                       variants={numberVariants}
                       custom={index}
                       className="text-4xl font-light text-nature-darkBrown mb-2"
                     >
-                      {stat.value}
+                      <CountUp end={stat.value} delay={0.2 + index * 0.1} duration={1.2} />
                     </motion.p>
                     
-                    {/* Label */}
                     <motion.p
                       variants={numberVariants}
-                      custom={index + 1}
-                      className="text-sm text-nature-darkBrown/70 text-center"
+                      custom={index + 0.5}
+                      className="text-sm text-nature-darkBrown/70"
                     >
                       {stat.label}
                     </motion.p>

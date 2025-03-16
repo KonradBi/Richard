@@ -125,7 +125,7 @@ export function Hero() {
               
               {/* Architect Image */}
               <motion.div
-                className="relative w-full h-full rounded-2xl overflow-hidden"
+                className="relative w-[80%] h-[80%] mx-auto rounded-2xl overflow-hidden"
                 style={{ scale }}
               >
                 <Image
