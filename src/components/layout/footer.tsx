@@ -45,14 +45,6 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/haus-0"
-                  className="text-base text-nature-sand/80 hover:text-nature-teal transition-colors"
-                >
-                  Haus 0
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/kontakt"
                   className="text-base text-nature-sand/80 hover:text-nature-teal transition-colors"
                 >

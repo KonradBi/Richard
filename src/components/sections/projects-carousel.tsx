@@ -205,49 +205,24 @@ export function ProjectsCarousel() {
                 
                 {/* Mittleres Bild (Hauptbild) */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[45%] h-full z-30 overflow-hidden">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`slide-${currentIndex}`}
-                      initial={{ 
-                        opacity: 0,
-                        x: direction * 20
-                      }}
-                      animate={{ 
-                        opacity: 1,
-                        x: 0,
-                        transition: { 
-                          duration: 0.5,
-                          ease: "easeOut"
-                        }
-                      }}
-                      exit={{ 
-                        opacity: 0,
-                        x: direction * -20,
-                        transition: { 
-                          duration: 0.5,
-                          ease: "easeIn"
-                        }
-                      }}
-                      className="relative h-full w-full"
-                    >
-                      <Link href={projects[currentIndex].href} className="block h-full">
-                        <div className="relative h-full overflow-hidden rounded-xl shadow-xl">
-                          <Image
-                            src={projects[currentIndex].image}
-                            alt={projects[currentIndex].title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 45vw, 500px"
-                            priority
-                          />
-                        </div>
-                      </Link>
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-center bg-white/90 backdrop-blur-sm rounded-b-xl">
-                        <h3 className="text-2xl md:text-3xl font-light text-nature-darkBrown mb-2">{projects[currentIndex].title}</h3>
-                        <p className="text-sm md:text-base text-nature-darkBrown/80">{projects[currentIndex].description}</p>
+                  <div className="relative h-full w-full">
+                    <Link href={projects[currentIndex].href} className="block h-full">
+                      <div className="relative h-full overflow-hidden rounded-xl shadow-xl">
+                        <Image
+                          src={projects[currentIndex].image}
+                          alt={projects[currentIndex].title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 45vw, 500px"
+                          priority
+                        />
                       </div>
-                    </motion.div>
-                  </AnimatePresence>
+                    </Link>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center bg-white/90 backdrop-blur-sm rounded-b-xl">
+                      <h3 className="text-2xl md:text-3xl font-light text-nature-darkBrown mb-2">{projects[currentIndex].title}</h3>
+                      <p className="text-sm md:text-base text-nature-darkBrown/80">{projects[currentIndex].description}</p>
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Rechtes Bild (kleiner und hinter dem Hauptbild) */}
