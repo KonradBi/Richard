@@ -11,6 +11,13 @@ module.exports = {
         sans: ["var(--font-inter)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
       },
       colors: {
+        nature: {
+          sage: '#9ba297',
+          teal: '#5c7b78',
+          darkBrown: '#382516',
+          warmBrown: '#7e4924',
+          sand: '#d4c4af',
+        },
         primary: {
           50: "#f5f6f2",
           100: "#e8ebe1",

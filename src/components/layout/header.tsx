@@ -29,7 +29,7 @@ export function Header() {
     <>
       <motion.header 
         className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-white/80 backdrop-blur-lg shadow-sm" : "bg-transparent"
+          isScrolled ? "bg-nature-sand/80 backdrop-blur-lg shadow-sm" : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -46,7 +46,7 @@ export function Header() {
                 alt="arc muetze Logo"
                 width={140}
                 height={50}
-                className={isScrolled ? "" : ""}
+                className={isScrolled ? "brightness-75" : ""}
               />
             </Link>
             
@@ -61,11 +61,11 @@ export function Header() {
                   >
                     <Link 
                       href={item.href}
-                      className="relative text-neutral-600 hover:text-primary-500 transition-colors group"
+                      className="relative text-nature-darkBrown hover:text-nature-teal transition-colors group"
                     >
                       <span className="relative">
                         {item.name}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-nature-teal group-hover:w-full transition-all duration-300" />
                       </span>
                     </Link>
                   </motion.li>
@@ -73,42 +73,26 @@ export function Header() {
               </ul>
             </nav>
 
-            <motion.button 
-              className="relative z-10 md:hidden w-10 h-10 flex items-center justify-center"
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              className="relative z-10 md:hidden"
+              aria-label="Toggle Menu"
             >
-              <span className="sr-only">Menu öffnen</span>
-              <div className="relative w-6 h-5">
+              <div className="flex flex-col gap-1.5">
                 <motion.span
-                  className="absolute w-full h-0.5 bg-neutral-800"
-                  animate={{ 
-                    top: isMenuOpen ? "50%" : "0%",
-                    rotate: isMenuOpen ? 45 : 0,
-                    translateY: isMenuOpen ? "-50%" : "0%"
-                  }}
-                  transition={{ duration: 0.3 }}
+                  animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                  className={`block h-0.5 w-6 bg-nature-darkBrown transform transition-transform duration-300`}
                 />
                 <motion.span
-                  className="absolute top-1/2 w-full h-0.5 bg-neutral-800"
-                  animate={{ 
-                    opacity: isMenuOpen ? 0 : 1,
-                    translateY: "-50%"
-                  }}
-                  transition={{ duration: 0.3 }}
+                  animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                  className={`block h-0.5 w-6 bg-nature-darkBrown transition-opacity duration-300`}
                 />
                 <motion.span
-                  className="absolute w-full h-0.5 bg-neutral-800"
-                  animate={{ 
-                    bottom: isMenuOpen ? "50%" : "0%",
-                    rotate: isMenuOpen ? -45 : 0,
-                    translateY: isMenuOpen ? "50%" : "0%"
-                  }}
-                  transition={{ duration: 0.3 }}
+                  animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                  className={`block h-0.5 w-6 bg-nature-darkBrown transform transition-transform duration-300`}
                 />
               </div>
-            </motion.button>
+            </button>
           </div>
         </div>
       </motion.header>
@@ -123,7 +107,7 @@ export function Header() {
             transition={{ duration: 0.3 }}
           >
             <motion.div 
-              className="absolute inset-0 bg-white/90 backdrop-blur-lg"
+              className="absolute inset-0 bg-nature-sand/90 backdrop-blur-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -140,7 +124,7 @@ export function Header() {
                     >
                       <Link 
                         href={item.href}
-                        className="text-3xl font-bold text-neutral-800 hover:text-primary-500 transition-colors"
+                        className="text-3xl font-light text-nature-darkBrown hover:text-nature-teal transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}

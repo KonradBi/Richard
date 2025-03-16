@@ -11,8 +11,8 @@ const projects = [
     image: "/images/wohnen/arcmuetzewohnen3.png",
     title: "Architektur, die verbindet",
     description: "Mit innovativen Konzepten schaffe ich nachhaltige Lebensräume, die sich nahtlos in die moderne Welt einfügen.",
-    gradientFrom: "from-stone-100",
-    gradientTo: "to-neutral-200",
+    gradientFrom: "from-nature-sand",
+    gradientTo: "to-nature-sage",
     imagePosition: "right"
   },
   {
@@ -20,8 +20,8 @@ const projects = [
     image: "/images/wohnen/arcmuetzewohnen2.jpg",
     title: "Harmonie der Elemente",
     description: "Licht, Raum und Material verschmelzen zu einer Einheit, die mehr ist als die Summe ihrer Teile.",
-    gradientFrom: "from-amber-50",
-    gradientTo: "to-orange-100",
+    gradientFrom: "from-nature-sage",
+    gradientTo: "to-nature-teal",
     imagePosition: "left"
   },
   {
@@ -29,8 +29,8 @@ const projects = [
     image: "/images/wohnen/arcmuetzewohnen1.png",
     title: "Effizienz trifft Ästhetik",
     description: "Erlebe, wie durchdachte Grundrisse Dein Wohnerlebnis verändern und Dein Zuhause in einen Ort der Entfaltung verwandeln.",
-    gradientFrom: "from-zinc-100",
-    gradientTo: "to-stone-200",
+    gradientFrom: "from-nature-teal",
+    gradientTo: "to-nature-sand",
     imagePosition: "center"
   }
 ]
@@ -59,14 +59,14 @@ export function Living() {
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"])
 
   return (
-    <section ref={containerRef} className="relative py-32 min-h-screen overflow-hidden bg-white">
+    <section ref={containerRef} className="relative py-32 min-h-screen overflow-hidden bg-nature-sand/5">
       {/* Minimalistischer Hintergrund */}
       <motion.div 
         style={{ y: backgroundY }}
         className="absolute inset-0"
       >
         <GridPattern />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-nature-sand/5 via-transparent to-nature-sand/5" />
       </motion.div>
 
       {/* Content Container */}
@@ -80,7 +80,7 @@ export function Living() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary-500 text-sm uppercase tracking-widest mb-4 block"
+            className="text-nature-teal text-sm uppercase tracking-widest mb-4 block"
           >
             Lebensräume
           </motion.span>
@@ -89,7 +89,7 @@ export function Living() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-light text-neutral-800 relative"
+            className="text-5xl md:text-7xl font-light text-nature-darkBrown relative"
           >
             <span className="relative">
               Wohnen
@@ -98,7 +98,7 @@ export function Living() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-                className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-neutral-300 to-transparent origin-left"
+                className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-nature-sage/50 to-transparent origin-left"
               />
             </span>
           </motion.h2>
@@ -132,7 +132,7 @@ export function Living() {
                   className="relative aspect-[16/9] mb-8"
                 >
                   {/* Subtle Border Frame */}
-                  <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-neutral-100 to-white shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-nature-sand/20 to-nature-sage/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Main Image */}
                   <motion.div
@@ -174,17 +174,17 @@ export function Living() {
                   }`}
                 >
                   <motion.span
-                    className="inline-block text-sm text-neutral-500 font-medium mb-2"
+                    className="inline-block text-sm text-nature-teal font-medium mb-2"
                   >
                     Meine Vision
                   </motion.span>
                   <motion.h3
-                    className="text-3xl md:text-4xl font-light mb-4 text-neutral-800"
+                    className="text-3xl md:text-4xl font-light mb-4 text-nature-darkBrown"
                   >
                     {project.title}
                   </motion.h3>
                   <motion.p
-                    className="text-neutral-600 leading-relaxed"
+                    className="text-nature-darkBrown/80 leading-relaxed"
                   >
                     {project.description}
                   </motion.p>
@@ -195,7 +195,7 @@ export function Living() {
         </div>
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex justify-center mt-16">
-            <Link href="/projekte" className="text-lg font-medium text-primary-600 hover:text-primary-700">
+            <Link href="/projekte" className="text-lg font-medium text-nature-teal hover:text-nature-warmBrown transition-colors duration-300">
               Zu den Projekten <span aria-hidden="true">→</span>
             </Link>
           </div>

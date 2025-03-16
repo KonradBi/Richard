@@ -21,7 +21,7 @@ const BackgroundBlob = () => (
       repeat: Infinity,
       ease: "easeInOut",
     }}
-    className="absolute w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary-200/10 to-primary-300/10 blur-3xl"
+    className="absolute w-[800px] h-[800px] rounded-full bg-gradient-to-br from-nature-sage/10 to-nature-teal/10 blur-3xl"
   />
 )
 
@@ -74,7 +74,7 @@ export function Quote() {
   return (
     <section
       ref={containerRef}
-      className="relative py-32 overflow-hidden bg-neutral-900"
+      className="relative py-32 overflow-hidden bg-nature-darkBrown"
     >
       {/* Background */}
       <motion.div
@@ -97,21 +97,21 @@ export function Quote() {
       >
         <div className="max-w-4xl mx-auto text-center">
           <blockquote className="relative">
-            <span className="absolute -top-8 -left-4 text-6xl text-primary-200/20">"</span>
-            <span className="absolute -bottom-8 -right-4 text-6xl text-primary-200/20">"</span>
+            <span className="absolute -top-8 -left-4 text-6xl text-nature-sand/20">"</span>
+            <span className="absolute -bottom-8 -right-4 text-6xl text-nature-sand/20">"</span>
             
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              className="text-3xl md:text-5xl font-light leading-relaxed tracking-wide text-neutral-50 [word-spacing:0.3em]"
+              className="text-3xl md:text-5xl font-light leading-relaxed tracking-wide text-nature-sand [word-spacing:0.3em]"
             >
               {words.map((word, index) => (
                 <motion.span
                   key={index}
                   className={`inline-block mx-[0.15em] ${
                     word === "Licht" 
-                      ? "text-primary-200 font-normal relative after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-primary-200/30" 
+                      ? "text-nature-teal font-normal relative after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-nature-teal/30" 
                       : ""
                   }`}
                   variants={wordVariants}
@@ -128,7 +128,7 @@ export function Quote() {
               transition={{ delay: 4 }}
               className="mt-12"
             >
-              <cite className="text-primary-200/80 tracking-wide">— {author}</cite>
+              <cite className="text-nature-sage/80 tracking-wide">— {author}</cite>
             </motion.footer>
           </blockquote>
         </div>

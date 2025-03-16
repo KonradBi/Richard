@@ -34,9 +34,9 @@ export function Commercial() {
   return (
     <section ref={containerRef} className="relative py-32 min-h-screen overflow-hidden">
       {/* Dynamischer Hintergrund */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 to-neutral-800">
+      <div className="absolute inset-0 bg-gradient-to-b from-nature-darkBrown to-nature-warmBrown">
         <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #22c55e 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, #d4c4af 1px, transparent 0)`,
           backgroundSize: '48px 48px'
         }} />
       </div>
@@ -45,15 +45,15 @@ export function Commercial() {
         {/* Überschrift */}
         <div className="text-center mb-24">
           <div className="inline-block">
-            <span className="block text-sm font-medium tracking-widest text-primary-500 mb-4">
+            <span className="block text-sm font-medium tracking-widest text-nature-sand mb-4">
               Geschäftsräume
             </span>
-            <h2 className="text-4xl font-light tracking-tight text-white sm:text-5xl">
+            <h2 className="text-4xl font-light tracking-tight text-nature-sand sm:text-5xl">
               Gewerbe
             </h2>
-            <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-50" />
+            <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-nature-sand to-transparent opacity-50" />
           </div>
-          <p className="mt-8 max-w-2xl mx-auto text-lg text-gray-300">
+          <p className="mt-8 max-w-2xl mx-auto text-lg text-nature-sand/90">
             Gewerbearchitektur, die Maßstäbe setzt. Von der ersten Skizze bis zur finalen Umsetzung 
             entwickeln wir gemeinsam Räume, die Ihr Unternehmen optimal repräsentieren.
           </p>
@@ -78,7 +78,7 @@ export function Commercial() {
                 {/* Image Container */}
                 <div className="relative aspect-[16/9] mb-8">
                   {/* Glasmorphism Frame */}
-                  <div className="absolute -inset-4 rounded-3xl bg-white/5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" />
+                  <div className="absolute -inset-4 rounded-3xl bg-nature-sand/5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" />
                   
                   {/* Main Image */}
                   <motion.div
@@ -100,7 +100,7 @@ export function Commercial() {
                     
                     {/* Gradient Overlay */}
                     <motion.div 
-                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                      className="absolute inset-0 bg-gradient-to-t from-nature-darkBrown/80 via-transparent to-transparent"
                       initial={{ opacity: 0.6 }}
                       animate={{ opacity: hoveredIndex === index ? 0.4 : 0.6 }}
                       transition={{ duration: 0.7 }}
@@ -113,8 +113,8 @@ export function Commercial() {
                         animate={{ y: hoveredIndex === index ? 0 : 20, opacity: hoveredIndex === index ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <h3 className="text-3xl font-extralight text-white mb-4 tracking-wide">{project.title}</h3>
-                        <p className="text-gray-200/90 leading-relaxed">{project.description}</p>
+                        <h3 className="text-3xl font-extralight text-nature-sand mb-4 tracking-wide">{project.title}</h3>
+                        <p className="text-nature-sand/90 leading-relaxed">{project.description}</p>
                       </motion.div>
                     </div>
                   </motion.div>
@@ -134,7 +134,7 @@ export function Commercial() {
         >
           <Link
             href="/projekte"
-            className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium text-white bg-primary-500/10 hover:bg-primary-500/20 transition-colors duration-300"
+            className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium text-nature-sand bg-nature-teal/10 hover:bg-nature-teal/20 transition-colors duration-300"
           >
             Mehr Gewerbeprojekte entdecken
             <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
