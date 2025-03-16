@@ -32,7 +32,7 @@ export function Footer() {
                   href="/uberuns"
                   className="text-base text-nature-sand/80 hover:text-nature-teal transition-colors"
                 >
-                  Über uns
+                  Über mich
                 </Link>
               </li>
               <li>
