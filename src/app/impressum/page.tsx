@@ -114,6 +114,15 @@ export default function Impressum() {
               <h2 className="text-2xl font-semibold text-neutral-900 mb-4">Urheberrecht</h2>
               <p className="mb-4">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
               <p className="mb-4">Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+
+              <p className="mb-4">Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+              <address className="mb-4 not-italic">
+                arc MUETZE<br />
+                Liststraße 10<br />
+                01127 Dresden<br /><br />
+                Telefon: +49 (0)351 88 94 21-12<br />
+                E-Mail: buero@arc-muetze.de
+              </address>
             </motion.section>
           </div>
         </div>

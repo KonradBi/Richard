@@ -60,7 +60,7 @@ const CookieConsent = ({
     return variant !== "small" ? (
         <div
             className={cn(
-                "fixed z-[200] bottom-0 left-0 right-0 w-full duration-700 bg-background/80 backdrop-blur-lg border-t border-border shadow-lg",
+                "fixed z-[200] bottom-0 left-0 right-0 w-full duration-700 bg-white/95 backdrop-blur-sm border-t border-nature-sand/20 shadow-lg",
                 !isOpen
                     ? "transition-[opacity,transform] translate-y-8 opacity-0"
                     : "transition-[opacity,transform] translate-y-0 opacity-100",
@@ -71,12 +71,12 @@ const CookieConsent = ({
                 <div className="py-4 px-4 md:px-6">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div className="flex items-center gap-3">
-                            <CookieIcon className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                            <CookieIcon className="h-5 w-5 flex-shrink-0 text-nature-teal" />
                             <div className="space-y-1">
-                                <h1 className="text-sm font-medium">Datenschutz-Einwilligung</h1>
-                                <p className="text-sm text-muted-foreground">
+                                <h1 className="text-sm font-medium text-nature-darkBrown">Datenschutz-Einwilligung</h1>
+                                <p className="text-sm text-nature-darkBrown/80">
                                     Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.
-                                    <a href="/datenschutz" className="ml-1 underline underline-offset-4 hover:text-foreground transition-colors">
+                                    <a href="/datenschutz" className="ml-1 text-nature-teal hover:text-nature-teal/80 underline underline-offset-4 transition-colors">
                                         Mehr erfahren
                                     </a>
                                 </p>
@@ -86,13 +86,13 @@ const CookieConsent = ({
                             <Button
                                 onClick={decline}
                                 variant="outline"
-                                className="flex-1 md:flex-none bg-gray-100 hover:bg-gray-200 border-gray-200"
+                                className="flex-1 md:flex-none bg-transparent hover:bg-gray-50 border-gray-300 text-gray-700"
                             >
                                 Ablehnen
                             </Button>
                             <Button 
                                 onClick={accept}
-                                className="flex-1 md:flex-none"
+                                className="flex-1 md:flex-none bg-nature-teal hover:bg-nature-teal/90 text-white"
                             >
                                 Akzeptieren
                             </Button>

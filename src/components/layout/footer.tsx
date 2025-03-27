@@ -20,7 +20,6 @@ export function Footer() {
               />
             </div>
             <div className="text-left text-nature-sand/80">
-              <p className="text-lg">Nachhaltige Architektur für die Zukunft</p>
             </div>
           </div>
           
@@ -57,9 +56,9 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-nature-teal mb-6">Kontakt</h3>
             <ul className="space-y-3 text-nature-sand/80">
-              <li><p className="text-base">Bautznerstraße 73</p></li>
-              <li><p className="text-base">01099 Dresden</p></li>
-              <li><p className="text-base">muetze@arcmuetze.de</p></li>
+              <li><p className="text-base">Liststraße 10</p></li>
+              <li><p className="text-base">01127 Dresden</p></li>
+              <li><p className="text-base">buero@arc-muetze.de</p></li>
               <li><p className="text-base">+49 (0)351 88 94 21-12</p></li>
             </ul>
           </div>
@@ -84,6 +83,36 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+            <div className="flex items-center space-x-4 mt-4">
+              <Link
+                href="https://twitter.com/arcmuetze"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-nature-sand/80 hover:text-nature-teal transition-colors"
+              >
+                <Image
+                  src="/images/logos/Twitter-X-White-Logo-PNG.png"
+                  alt="X (Twitter)"
+                  width={20}
+                  height={20}
+                  className="opacity-90 hover:opacity-100"
+                />
+              </Link>
+              <Link
+                href="https://linkedin.com/company/arcmuetze"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-nature-sand/80 hover:text-nature-teal transition-colors"
+              >
+                <Image
+                  src="/images/logos/iconmonstr-linkedin-3.svg"
+                  alt="LinkedIn"
+                  width={20}
+                  height={20}
+                  className="brightness-0 invert opacity-90"
+                />
+              </Link>
+            </div>
           </div>
         </div>
         

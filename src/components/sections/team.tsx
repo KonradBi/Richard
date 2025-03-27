@@ -3,43 +3,58 @@
 import { motion, useAnimation, useInView } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 
-// Strukturdaten für das Blumen-Design
-const petals = [
-  { id: 1, label: "Architektur", angle: 0, distance: 30, size: 16 },
-  { id: 2, label: "Planung", angle: 45, distance: 30, size: 14 },
-  { id: 3, label: "Tragwerk", angle: 90, distance: 30, size: 15 },
-  { id: 4, label: "Haustechnik", angle: 135, distance: 30, size: 16 },
-  { id: 5, label: "Energieeffizienz", angle: 180, distance: 30, size: 15 },
-  { id: 6, label: "Steuerstrategie", angle: 225, distance: 30, size: 16 },
-  { id: 7, label: "Finanzierung", angle: 270, distance: 30, size: 15 },
-  { id: 8, label: "Brandschutz", angle: 315, distance: 30, size: 14 }
+// Netzwerkdaten mit Kompetenzbereichen
+const networkNodes = [
+  { id: 1, label: "Architektur", color: "#9f8e7b", size: 1.2 },
+  { id: 2, label: "Planung", color: "#a0ab9d", size: 1.0 },
+  { id: 3, label: "Tragwerk", color: "#85766a", size: 1.1 },
+  { id: 4, label: "Haustechnik", color: "#a1968d", size: 1.0 },
+  { id: 5, label: "Energieeffizienz", color: "#877f6e", size: 1.1 },
+  { id: 6, label: "Projektentwicklung", color: "#9ba297", size: 1.0 },
+  { id: 7, label: "Finanzierung", color: "#90877b", size: 1.0 },
+  { id: 8, label: "Brandschutz", color: "#a59b92", size: 0.9 }
 ]
 
-// Umrechnung von Polarkoordinaten (Winkel + Abstand) in kartesische Koordinaten (x, y)
-function polarToCartesian(angle: number, distance: number, centerX = 50, centerY = 50) {
-  const angleInRadians = (angle - 90) * Math.PI / 180.0
-  const x = centerX + (distance * Math.cos(angleInRadians))
-  const y = centerY + (distance * Math.sin(angleInRadians))
+// Berechnet Position basierend auf einem Winkel und Abstand vom Zentrum
+function getNodePosition(index: number, total: number, radius: number = 35) {
+  const angleStep = (2 * Math.PI) / total
+  const angle = index * angleStep - Math.PI / 2 // Starte von oben (statt rechts)
+  const x = 50 + radius * Math.cos(angle)
+  const y = 50 + radius * Math.sin(angle)
+  
   return { x, y }
+}
+
+// Generiert eine Hexagon-Form für das Zentrum
+function createHexagon(x: number, y: number, size: number) {
+  const points = []
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i
+    points.push(`${x + size * Math.cos(angle)},${y + size * Math.sin(angle)}`)
+  }
+  return points.join(' ')
 }
 
 export function Team() {
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
-  const [hoveredPetal, setHoveredPetal] = useState<number | null>(null)
-  const [activePetal, setActivePetal] = useState<number | null>(null)
+  const [hoveredNode, setHoveredNode] = useState<number | null>(null)
+  const [activeNode, setActiveNode] = useState<number | null>(null)
   const controls = useAnimation()
 
-  // Automatische Aktivierung verschiedener Blütenblätter
+  // Automatische Animation verschiedener Nodes
   useEffect(() => {
+    if (!isInView) return
+    
     const interval = setInterval(() => {
-      const nextIndex = activePetal === null 
-        ? Math.floor(Math.random() * petals.length) 
-        : (petals.findIndex(p => p.id === activePetal) + 1) % petals.length
-      setActivePetal(petals[nextIndex].id)
+      const nextIndex = activeNode === null 
+        ? 0
+        : (networkNodes.findIndex(n => n.id === activeNode) + 1) % networkNodes.length
+      setActiveNode(networkNodes[nextIndex].id)
     }, 3000)
+    
     return () => clearInterval(interval)
-  }, [activePetal])
+  }, [activeNode, isInView])
 
   useEffect(() => {
     if (isInView) {
@@ -47,29 +62,50 @@ export function Team() {
     }
   }, [isInView, controls])
 
-  const itemVariants = {
+  // Animation Variants
+  const circleVariants = {
     hidden: { scale: 0, opacity: 0 },
     visible: (i: number) => ({
       scale: 1,
       opacity: 1,
       transition: {
-        delay: i * 0.1,
-        duration: 0.5,
+        delay: i * 0.05 + 0.3,
+        duration: 0.6,
         type: "spring",
-        stiffness: 60
+        stiffness: 70
+      }
+    })
+  }
+  
+  const lineVariants = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: (i: number) => ({
+      pathLength: 1, 
+      opacity: 0.5,
+      transition: {
+        delay: i * 0.04 + 0.2,
+        duration: 0.7,
+        ease: "easeOut"
+      }
+    })
+  }
+  
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: (i: number) => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.05 + 0.8,
+        duration: 0.4
       }
     })
   }
 
   return (
-    <section ref={containerRef} className="py-32 relative overflow-hidden bg-nature-teal/20">
+    <section ref={containerRef} className="py-32 relative overflow-hidden bg-gradient-to-b from-white to-nature-sand/5">
       {/* Hintergrund mit subtilen Effekten */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#d4c4af_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.15]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-nature-sand/10 via-transparent to-nature-sage/15" />
-        
-        {/* Sanfter Hintergrundverlauf */}
-        <div className="absolute left-1/2 top-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-nature-sand/10 to-transparent blur-xl"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#d4c4af_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07]" />
       </div>
       
       <div className="relative container mx-auto px-4">
@@ -84,16 +120,16 @@ export function Team() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl font-bold tracking-tight text-nature-darkBrown sm:text-5xl mb-8"
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-light tracking-tight text-nature-darkBrown mb-8"
           >
             Kompetenz durch Vernetzung
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg text-nature-darkBrown/90 max-w-3xl mx-auto"
+            transition={{ delay: 0.2 }}
+            className="text-lg text-nature-darkBrown/80 max-w-3xl mx-auto"
           >
             Mein starkes Netzwerk aus spezialisierten Partnern ermöglicht es mir, Projekte jeder
             Art und Größe professionell zu planen und zu betreuen - vom privaten Wohnungsbau
@@ -102,138 +138,125 @@ export function Team() {
           </motion.p>
         </div>
 
-        <div className="relative w-full max-w-4xl mx-auto">
+        <div className="relative w-full max-w-3xl mx-auto">
           <div className="relative aspect-square">
             <svg
               viewBox="0 0 100 100"
               className="w-full h-full"
             >
-              {/* Subtile Verbindungslinien zwischen Blütenblättern */}
-              {petals.map((petal, i) => {
-                const { x: x1, y: y1 } = polarToCartesian(petal.angle, petal.distance * 0.8)
-                const nextPetal = petals[(i + 1) % petals.length]
-                const { x: x2, y: y2 } = polarToCartesian(nextPetal.angle, nextPetal.distance * 0.8)
-                const isActive = hoveredPetal === petal.id || activePetal === petal.id
-                
-                return (
-                  <motion.path
-                    key={`connection-${i}`}
-                    d={`M ${x1} ${y1} Q 50 50, ${x2} ${y2}`}
-                    stroke="#d4c4af"
-                    strokeWidth="0.3"
-                    fill="none"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ 
-                      pathLength: 1, 
-                      opacity: isActive ? 0.5 : 0.2,
-                      transition: { 
-                        pathLength: { delay: i * 0.05 + 0.5, duration: 1.5, ease: "easeInOut" },
-                        opacity: { duration: 0.3 }
-                      }
-                    }}
-                  />
-                )
-              })}
-              
-              {/* Strahlende Linien vom Zentrum zu den Blütenblättern */}
-              {petals.map((petal, i) => {
-                const { x, y } = polarToCartesian(petal.angle, petal.distance * 0.4)
-                const isActive = hoveredPetal === petal.id || activePetal === petal.id
+              {/* Großer Kreisring */}
+              <motion.circle
+                cx="50"
+                cy="50"
+                r="38"
+                fill="none"
+                stroke="#d4c4af"
+                strokeWidth="0.2"
+                strokeDasharray="1 1"
+                custom={0}
+                variants={circleVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              />
+
+              {/* Verbindungslinien zwischen Nodes und Zentrum */}
+              {networkNodes.map((node, i) => {
+                const { x, y } = getNodePosition(i, networkNodes.length)
+                const isActive = activeNode === node.id || hoveredNode === node.id
                 
                 return (
                   <motion.line
-                    key={`ray-${i}`}
+                    key={`line-${i}`}
                     x1="50"
                     y1="50"
                     x2={x}
                     y2={y}
-                    stroke="#85766a"
-                    strokeWidth={isActive ? "0.6" : "0.4"}
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ 
-                      pathLength: 1, 
-                      opacity: isActive ? 0.6 : 0.3,
-                      transition: { 
-                        pathLength: { delay: i * 0.05 + 0.2, duration: 1, ease: "easeInOut" },
-                        opacity: { duration: 0.3 }
-                      }
-                    }}
+                    stroke={node.color}
+                    strokeWidth={isActive ? "0.5" : "0.3"}
+                    strokeDasharray={isActive ? "none" : "1 2"}
+                    custom={i}
+                    variants={lineVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    opacity={isActive ? 0.8 : 0.4}
                   />
                 )
               })}
 
-              {/* Blütenblätter (äußere organische Formen) */}
-              {petals.map((petal, i) => {
-                const { x, y } = polarToCartesian(petal.angle, petal.distance)
-                const isActive = hoveredPetal === petal.id || activePetal === petal.id
-                const scale = isActive ? 1.1 : 1
+              {/* Kreis-Zentrum */}
+              <motion.g
+                initial={{ scale: 0, opacity: 0 }}
+                animate={isInView ? { 
+                  scale: 1, 
+                  opacity: 1,
+                  transition: { 
+                    delay: 0.2,
+                    duration: 0.7, 
+                    type: "spring",
+                    stiffness: 50,
+                    damping: 10
+                  }
+                } : { scale: 0, opacity: 0 }}
+              >
+                {/* Äußerer Kreis */}
+                <circle cx="50" cy="50" r="15" fill="#e6dfd6" opacity="0.4" />
+                <circle cx="50" cy="50" r="12" fill="#e6dfd6" opacity="0.6" />
+                
+                {/* Innerer Kreis */}
+                <circle 
+                  cx="50" 
+                  cy="50" 
+                  r="8" 
+                  fill="#85766a"
+                  stroke="#fff"
+                  strokeWidth="0.2"
+                />
+                
+                <text
+                  x="50"
+                  y="50"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="2.8"
+                  fontWeight="600"
+                  fill="#ffffff"
+                  style={{
+                    filter: "drop-shadow(0px 0.5px 0.5px rgba(0,0,0,0.3))"
+                  }}
+                >
+                  arc muetze
+                </text>
+              </motion.g>
+              
+              {/* Kompetenz-Nodes */}
+              {networkNodes.map((node, i) => {
+                const { x, y } = getNodePosition(i, networkNodes.length)
+                const isActive = hoveredNode === node.id || activeNode === node.id
+                const size = 3.5 * node.size * (isActive ? 1.2 : 1)
                 
                 return (
-                  <g key={`petal-${i}`} style={{ cursor: "pointer" }}
-                    onMouseEnter={() => setHoveredPetal(petal.id)}
-                    onMouseLeave={() => setHoveredPetal(null)}
+                  <motion.g 
+                    key={`node-${node.id}`} 
+                    style={{ cursor: "pointer" }}
+                    onMouseEnter={() => setHoveredNode(node.id)}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => setActiveNode(node.id === activeNode ? null : node.id)}
+                    custom={i}
+                    variants={circleVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
                   >
-                    <motion.path
-                      d={`
-                        M ${50 + (x - 50) * 0.35} ${50 + (y - 50) * 0.35}
-                        C ${50 + (x - 50) * 0.35 + (y - 50) * 0.1} ${50 + (y - 50) * 0.35 - (x - 50) * 0.1},
-                          ${x - (y - 50) * 0.15} ${y + (x - 50) * 0.15},
-                          ${x} ${y}
-                        C ${x + (y - 50) * 0.15} ${y - (x - 50) * 0.15},
-                          ${50 + (x - 50) * 0.35 - (y - 50) * 0.1} ${50 + (y - 50) * 0.35 + (x - 50) * 0.1},
-                          ${50 + (x - 50) * 0.35} ${50 + (y - 50) * 0.35}
-                      `}
-                      fill="#d4c4af"
-                      fillOpacity={isActive ? "0.3" : "0.15"}
-                      stroke={isActive ? "#9ba297" : "#d4c4af"}
-                      strokeWidth={isActive ? "0.5" : "0.3"}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ 
-                        scale,
-                        opacity: 1,
-                        transition: { 
-                          scale: { duration: 0.3 },
-                          opacity: { delay: i * 0.07 + 0.8, duration: 0.8 }
-                        }
-                      }}
-                      custom={i}
-                      variants={itemVariants}
-                    />
-                    
-                    {/* Text für die Blütenblätter */}
-                    <motion.text
-                      x={x}
-                      y={y}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fontSize="3"
-                      fill={isActive ? "#614c39" : "#5c3d2e"}
-                      fontWeight={isActive ? "bold" : "normal"}
-                      initial={{ opacity: 0 }}
-                      animate={{ 
-                        opacity: 1,
-                        transition: { delay: i * 0.07 + 1, duration: 0.5 }
-                      }}
-                      style={{
-                        filter: "drop-shadow(0px 1px 1px rgba(255,255,255,0.7))"
-                      }}
-                    >
-                      {petal.label}
-                    </motion.text>
-
-                    {/* Pulsierende Animation für aktive Blütenblätter */}
+                    {/* Hintergrund-Effekt für aktive Nodes */}
                     {isActive && (
                       <motion.circle
                         cx={x}
                         cy={y}
-                        r="5"
-                        fill="transparent"
-                        stroke="#9ba297"
-                        strokeWidth="0.5"
-                        initial={{ opacity: 0, scale: 0.8 }}
+                        r={size * 1.8}
+                        fill={node.color}
+                        opacity={0.15}
                         animate={{ 
-                          opacity: [0, 0.3, 0],
-                          scale: [0.8, 1.2, 0.8],
+                          scale: [1, 1.3, 1],
+                          opacity: [0.1, 0.2, 0.1],
                           transition: { 
                             duration: 2,
                             repeat: Infinity,
@@ -242,101 +265,60 @@ export function Team() {
                         }}
                       />
                     )}
-                  </g>
+                    
+                    {/* Punkte für Nodes */}
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={size}
+                      fill={node.color}
+                      stroke={isActive ? "#fff" : "none"}
+                      strokeWidth="0.2"
+                    />
+                    
+                    {/* Label */}
+                    <motion.text
+                      x={x}
+                      y={y + 8}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fontSize={isActive ? "2.8" : "2.5"}
+                      fontWeight={isActive ? "500" : "400"}
+                      fill="#614c39"
+                      custom={i}
+                      variants={textVariants}
+                    >
+                      {node.label}
+                    </motion.text>
+                  </motion.g>
                 )
               })}
-              
-              {/* Zentrale Blütenmitte (arc muetze) */}
-              <motion.g
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ 
-                  scale: 1, 
-                  opacity: 1,
-                  transition: { delay: 0.3, duration: 0.8, type: "spring" }
-                }}
-              >
-                {/* Hintergrundkreis */}
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="12"
-                  fill="#e6dfd6"
-                  initial={{ opacity: 0.4 }}
-                  animate={{ 
-                    opacity: [0.4, 0.6, 0.4],
-                    scale: [1, 1.05, 1],
-                    transition: { 
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
-                  }}
-                />
+
+              {/* Äußere Verbindungslinien zwischen benachbarten Punkten */}
+              {networkNodes.map((node, i) => {
+                const pos1 = getNodePosition(i, networkNodes.length)
+                const nextIndex = (i + 1) % networkNodes.length
+                const pos2 = getNodePosition(nextIndex, networkNodes.length)
                 
-                {/* Innerer pulsierender Kreis */}
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="8"
-                  fill="#c8b8a1"
-                  initial={{ opacity: 0.6 }}
-                  animate={{ 
-                    opacity: [0.6, 0.8, 0.6],
-                    transition: { 
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
-                  }}
-                />
-                
-                {/* Zentraler Kreis */}
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="6"
-                  fill="#85766a"
-                  initial={{ opacity: 0.8 }}
-                  animate={{ 
-                    opacity: [0.8, 1, 0.8],
-                    transition: { 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
-                  }}
-                />
-                
-                {/* Zentraler Text (arc muetze) */}
-                <motion.text
-                  x="50"
-                  y="50"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fontSize="3.8"
-                  fontWeight="bold"
-                  fill="#ffffff"
-                  style={{
-                    filter: "drop-shadow(0px 1px 1px rgba(0,0,0,0.3))"
-                  }}
-                >
-                  arc muetze
-                </motion.text>
-              </motion.g>
+                return (
+                  <motion.path
+                    key={`outer-line-${i}`}
+                    d={`M ${pos1.x} ${pos1.y} A 45 45 0 0 1 ${pos2.x} ${pos2.y}`}
+                    fill="none"
+                    stroke="#d4c4af"
+                    strokeWidth="0.2"
+                    strokeDasharray="1 2"
+                    custom={i + networkNodes.length}
+                    variants={lineVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    opacity={0.3}
+                  />
+                )
+              })}
             </svg>
           </div>
         </div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 2 }}
-          className="text-center text-nature-darkBrown mt-12 max-w-3xl mx-auto"
-        >
-          Von der ersten Planung bis zur finalen Umsetzung koordiniere ich die Expertise
-          unserer Partner und passe mich flexibel an die spezifischen Anforderungen Ihres
-          Projektes an - unabhängig von dessen Größe und Komplexität.
-        </motion.p>
       </div>
     </section>
   )

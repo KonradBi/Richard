@@ -6,18 +6,32 @@ import Image from "next/image"
 
 const logos = [
   {
-    src: "/images/logos/ak-sachsen.png",
-    alt: "Architektenkammer Sachsen Logo",
-    width: 320,
-    height: 160,
-    scale: 1.4
+    src: "/images/logos/IHK-logo.svg",
+    alt: "IHK Logo",
+    width: 280,
+    height: 140,
+    scale: 0.9
   },
   {
-    src: "/images/logos/bak.png",
-    alt: "Bundesarchitektenkammer Logo",
-    width: 240,
-    height: 120,
-    scale: 1
+    src: "/images/logos/Logo_Bayerische_Versorgungskammer.svg",
+    alt: "Bayerische Versorgungskammer Logo",
+    width: 280,
+    height: 140,
+    scale: 1.0
+  },
+  {
+    src: "/images/logos/logo-eipos.png",
+    alt: "EIPOS Logo",
+    width: 260,
+    height: 130,
+    scale: 1.1
+  },
+  {
+    src: "/images/logos/ak-sachsen.png",
+    alt: "Architektenkammer Sachsen Logo",
+    width: 300,
+    height: 150,
+    scale: 1.2
   }
 ]
 
@@ -79,7 +93,7 @@ export function LogoWall() {
         </div>
 
         {/* Logo Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center justify-items-center max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-center justify-items-center max-w-6xl mx-auto">
           {logos.map((logo, index) => (
             <motion.div
               key={index}

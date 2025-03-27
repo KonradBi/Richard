@@ -13,6 +13,7 @@ export function Header() {
     { name: 'Startseite', href: '/' },
     { name: 'Über mich', href: '/about' },
     { name: 'Projekte', href: '/projekte' },
+    { name: 'Aktuelles', href: '/aktuelles' },
     { name: 'Kontakt', href: '/kontakt' },
   ]
 

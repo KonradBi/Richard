@@ -92,6 +92,23 @@ export function ProjectsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [direction, setDirection] = useState(0) // -1 für links, 1 für rechts, 0 für initial
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  
+  // Check if on mobile device
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkIfMobile()
+    window.addEventListener('resize', checkIfMobile)
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile)
+    }
+  }, [])
   
   // Parallax effect for the section
   const { scrollYProgress } = useScroll({
@@ -123,6 +140,30 @@ export function ProjectsCarousel() {
     setIsTransitioning(true)
     setCurrentIndex(index)
     setTimeout(() => setIsTransitioning(false), 500)
+  }
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    if (touchStart - touchEnd > 50) {
+      goToNext() // Swipe left
+    }
+
+    if (touchStart - touchEnd < -50) {
+      goToPrev() // Swipe right
+    }
+    
+    // Reset
+    setTouchStart(0)
+    setTouchEnd(0)
   }
   
   return (
@@ -159,111 +200,171 @@ export function ProjectsCarousel() {
           </motion.p>
         </div>
         
-        {/* Verbesserte Karussell-Galerie */}
-        <div className="relative mt-20 mb-16">
-          {/* Navigation Arrows */}
-          <button 
-            onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300"
-            aria-label="Vorheriges Projekt"
-          >
-            <ChevronLeft className="w-6 h-6 text-nature-darkBrown" />
-          </button>
-          
-          <button 
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300"
-            aria-label="Nächstes Projekt"
-          >
-            <ChevronRight className="w-6 h-6 text-nature-darkBrown" />
-          </button>
-          
-          {/* Karussell-Container */}
-          <div className="relative max-w-6xl mx-auto">
-            <div className="relative h-[500px] md:h-[550px] lg:h-[600px] overflow-hidden">
-              {/* Karussell-Inhalt mit absoluter Positionierung */}
-              <div className="relative h-full w-full">
-                {/* Linkes Bild (kleiner und hinter dem Hauptbild) */}
+        {/* Mobile Carousel */}
+        {isMobile ? (
+          <div className="relative mb-16">
+            {/* Navigation Arrows */}
+            <button 
+              onClick={goToPrev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-md"
+              aria-label="Vorheriges Projekt"
+            >
+              <ChevronLeft className="w-5 h-5 text-nature-darkBrown" />
+            </button>
+            
+            <button 
+              onClick={goToNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-md"
+              aria-label="Nächstes Projekt"
+            >
+              <ChevronRight className="w-5 h-5 text-nature-darkBrown" />
+            </button>
+            
+            {/* Swipeable Area */}
+            <div 
+              className="touch-pan-y"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <AnimatePresence initial={false} mode="wait">
                 <motion.div 
-                  className="absolute left-[5%] top-1/2 -translate-y-1/2 w-[30%] h-[80%] z-10"
-                  animate={{ 
-                    opacity: isTransitioning ? 0.4 : 0.6,
-                    transition: { duration: 0.5, ease: "easeInOut" }
+                  key={currentIndex}
+                  initial={{ 
+                    opacity: 0,
+                    x: direction > 0 ? 300 : -300
                   }}
+                  animate={{ 
+                    opacity: 1,
+                    x: 0
+                  }}
+                  exit={{ 
+                    opacity: 0,
+                    x: direction > 0 ? -300 : 300
+                  }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="w-full px-2"
                 >
-                  <div className="relative h-full overflow-hidden rounded-xl shadow-lg transform scale-95">
-                    <Image
-                      src={projects[(currentIndex - 1 + projects.length) % projects.length].image}
-                      alt={projects[(currentIndex - 1 + projects.length) % projects.length].title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 30vw, 300px"
-                    />
-                    <div className="absolute inset-0 bg-black/20"></div>
-                  </div>
-                </motion.div>
-                
-                {/* Mittleres Bild (Hauptbild) */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[45%] h-full z-30 overflow-hidden">
-                  <div className="relative h-full w-full">
-                    <Link href={projects[currentIndex].href} className="block h-full">
-                      <div className="relative h-full overflow-hidden rounded-xl shadow-xl">
+                  <Link href={projects[currentIndex].href} className="block">
+                    <div className="relative bg-white rounded-xl shadow-lg overflow-hidden">
+                      <div className="aspect-[4/3] w-full relative">
                         <Image
                           src={projects[currentIndex].image}
                           alt={projects[currentIndex].title}
                           fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 45vw, 500px"
+                          className="object-cover object-center"
+                          sizes="(max-width: 768px) 100vw"
                           priority
                         />
                       </div>
-                    </Link>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center bg-white/90 backdrop-blur-sm rounded-b-xl">
-                      <h3 className="text-2xl md:text-3xl font-light text-nature-darkBrown mb-2">{projects[currentIndex].title}</h3>
-                      <p className="text-sm md:text-base text-nature-darkBrown/80">{projects[currentIndex].description}</p>
+                      <div className="p-4 text-center">
+                        <h3 className="text-xl font-light text-nature-darkBrown mb-1">{projects[currentIndex].title}</h3>
+                        <p className="text-sm text-nature-darkBrown/80">{projects[currentIndex].description}</p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                
-                {/* Rechtes Bild (kleiner und hinter dem Hauptbild) */}
-                <motion.div 
-                  className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[30%] h-[80%] z-10"
-                  animate={{ 
-                    opacity: isTransitioning ? 0.4 : 0.6,
-                    transition: { duration: 0.5, ease: "easeInOut" }
-                  }}
-                >
-                  <div className="relative h-full overflow-hidden rounded-xl shadow-lg transform scale-95">
-                    <Image
-                      src={projects[(currentIndex + 1) % projects.length].image}
-                      alt={projects[(currentIndex + 1) % projects.length].title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 30vw, 300px"
-                    />
-                    <div className="absolute inset-0 bg-black/20"></div>
-                  </div>
+                  </Link>
                 </motion.div>
+              </AnimatePresence>
+            </div>
+            
+            {/* Indicator Dots */}
+            <div className="flex justify-center mt-6">
+              <div className="flex space-x-3">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentIndex ? 'bg-nature-teal scale-125' : 'bg-nature-darkBrown/20'
+                    }`}
+                    aria-label={`Gehe zu Bild ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
-          
-          {/* Carousel Indicator Dots */}
-          <div className="flex justify-center mt-8">
-            <div className="flex space-x-3">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-nature-teal scale-125' : 'bg-nature-darkBrown/20'
-                  }`}
-                  aria-label={`Gehe zu Bild ${index + 1}`}
-                />
-              ))}
+        ) : (
+          // Desktop Carousel
+          <div className="relative mt-20 mb-16">
+            {/* Navigation Arrows */}
+            <button 
+              onClick={goToPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300"
+              aria-label="Vorheriges Projekt"
+            >
+              <ChevronLeft className="w-6 h-6 text-nature-darkBrown" />
+            </button>
+            
+            <button 
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-40 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300"
+              aria-label="Nächstes Projekt"
+            >
+              <ChevronRight className="w-6 h-6 text-nature-darkBrown" />
+            </button>
+            
+            {/* Redesigned Desktop Carousel */}
+            <div className="relative max-w-5xl mx-auto">
+              <div className="relative overflow-hidden py-8">
+                {/* Single Image */}
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.div 
+                    key={`main-${currentIndex}`}
+                    initial={{ 
+                      opacity: 0,
+                      y: 30
+                    }}
+                    animate={{ 
+                      opacity: 1,
+                      y: 0
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: -30
+                    }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="w-full max-w-3xl mx-auto"
+                  >
+                    <Link href={projects[currentIndex].href} className="block h-full">
+                      <div className="relative bg-white rounded-xl shadow-xl overflow-hidden h-full flex flex-col">
+                        <div className="aspect-[4/3] w-full relative">
+                          <Image
+                            src={projects[currentIndex].image}
+                            alt={projects[currentIndex].title}
+                            fill
+                            className="object-cover object-center"
+                            sizes="(max-width: 1280px) 100vw, 800px"
+                            priority
+                          />
+                        </div>
+                        <div className="p-6 text-center flex-1 flex flex-col justify-center">
+                          <h3 className="text-2xl font-light text-nature-darkBrown mb-3">{projects[currentIndex].title}</h3>
+                          <p className="text-base text-nature-darkBrown/80">{projects[currentIndex].description}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+            
+            {/* Carousel Indicator Dots */}
+            <div className="flex justify-center mt-8">
+              <div className="flex space-x-3">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentIndex ? 'bg-nature-teal scale-125' : 'bg-nature-darkBrown/20'
+                    }`}
+                    aria-label={`Gehe zu Bild ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </motion.div>
     </section>
   )
